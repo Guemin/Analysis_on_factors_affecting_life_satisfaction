@@ -55,6 +55,10 @@ table(immigrant_data$citizenship_status)
 # summary(lm4)
 ```
 
+```{r}
+library(ggplot2)
+```
+
 ## Title of your Report
 
 # Name(s) of Author(s) 
