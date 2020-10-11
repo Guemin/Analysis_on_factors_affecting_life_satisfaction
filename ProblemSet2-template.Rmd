@@ -28,7 +28,7 @@ life_satisfaction_data <- data %>%
   filter(self_rated_health != 0, self_rated_mental_health != 0, 
          average_hours_worked != "Don't know")
 life_satisfaction_data
-
+#comment-woolim
 # General Linear Regression Model
 satisfaction_lm <- lm(feelings_life ~ as.factor(self_rated_health)+ as.factor(self_rated_mental_health) + income_family + average_hours_worked, data = life_satisfaction_data)
 summary(satisfaction_lm)
