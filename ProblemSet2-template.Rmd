@@ -1,6 +1,6 @@
 ---
 title: "Title of Your Report"
-author: "Guemin Kim, Woolim Kim"
+author: "Guemin Kim, Woolim Kim, Yena Joo"
 date: "Oct 19, 2020"
 output: pdf_document
 ---
