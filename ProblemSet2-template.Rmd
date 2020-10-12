@@ -33,8 +33,8 @@ The data set we chose for this assignment contains responses of the General Soci
 
 Since we want to identify some key factors affecting one's life satisfaction as mentioned previously, the focus of our analysis will be "Health and subjective well-being". 
 
-The reason for chosing the 2017 GSS is because it is the most recent^[As it is stated in the documentation of the GSS, one of the primary objectives of the General Social Survey is to monitor the well being of Canadians over time.
-As a result, every suvery conducted so far contain the responses related to the questions asking for the respondents' well being, and the 2017 GSS is the most recent survey with such reponses.] survey that includes  the "Health and subjective well being" concept.
+The reason for choosing the 2017 GSS is because it is the most recent^[As it is stated in the documentation of the GSS, one of the primary objectives of the General Social Survey is to monitor the well being of Canadians over time.
+As a result, every survey conducted so far contain the responses related to the questions asking for the respondents' well being, and the 2017 GSS is the most recent survey with such reponses.] survey that includes  the "Health and subjective well being" concept.
 
 Since the original data set contains too many variables that are not neccessary, we are going to clean the data set prior to analysis by removing them.  
 
@@ -57,7 +57,6 @@ life_satisfaction_data <- data %>%
                                               self_rated_mental_health == "Don't know" ~ 0)) %>%
   filter(self_rated_health != 0, self_rated_mental_health != 0, 
          average_hours_worked != "Don't know") %>%
-  rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family)
   
 ```
 
@@ -118,6 +117,16 @@ table(immigrant_data$citizenship_status)
 # Logit Regression Model
 # lm4 <- lm(feelings_life ~ as.factor(landed_immigrant), data = immigrant_data, family = "binomial")
 # summary(lm4)
+
+```
+
+```{r}
+
+life_satisfaction_data %>%
+  ggplot(aes(x = as.factor(self_rated_total_health), y = (satisfaction_score))) + geom_boxplot() +
+  ggtitle("How Mental and Physical Health Affects People's Satisfaction") +
+  ylab("Satisfaction score") +
+  xlab("Self rated total health")
 
 ```
 
