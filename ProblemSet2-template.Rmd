@@ -19,9 +19,10 @@ data <- read_csv("gss.csv")
 # Oct 19, 2020
 
 ## Abstract
+*Here is where you give a brief (one paragraph overview of your entire paper). This should include some background/introduction, some methodology, results and conclusions.*
 
-We use the 2017 General Social Survey(GSS) data to study the response of their _____ to ____. The target population includes all non-institutionalized persons 15 years of age and older, living in the 10 provinces of Canada. The frame population is everyone who is registered combining both landline and cellular with Statistics Canada’s address registers, and the sampled population is whoever was reached via telephone. The target populations were stratified into 27 strata by geographic areas—mostly CMA— and simple random sampling without replacement of records was performed in each stratum.  
-We find….  
+We use the 2017 General Social Survey(GSS) data to study the response of people in Canada's life satisfactions to ____. The target population includes all non-institutionalized persons 15 years of age and older, living in the 10 provinces of Canada. The frame population is everyone who is registered combining both landline and cellular with Statistics Canada’s address registers, and the sampled population is whoever is reached via telephone. The target population was stratified into 27 strata by geographic areas -- mostly CMA -- and simple random sampling without replacement of records was performed in each stratum.  
+Through the analysis, We find….  
 1. a strong ….  
 2. no overall effects in ….  
 
