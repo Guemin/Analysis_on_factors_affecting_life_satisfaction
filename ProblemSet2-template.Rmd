@@ -57,6 +57,8 @@ life_satisfaction_data <- data %>%
                                               self_rated_mental_health == "Don't know" ~ 0)) %>%
   filter(self_rated_health != 0, self_rated_mental_health != 0, 
          average_hours_worked != "Don't know") %>%
+  rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family) %>%
+  mutate(self_rated_total_health = (self_rated_health + self_rated_mental_health)/2) #merged mental health and physical health in to one variable.
   
 ```
 
