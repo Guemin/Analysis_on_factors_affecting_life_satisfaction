@@ -32,6 +32,16 @@ Together, these results suggest that…….
 
 Here is where you should give insight into the setting and introduce the goal of the analysis. Here you can introduce ideas and basic concepts regarding the study setting and the potential model. Again, this is the introduction, so you should be explaining the importance of the work that is ahead and hopefully build some suspense for the reader. You can also highlight what will be included in the subsequent sections.
 
+**INTRO (1)
+In recent periods, COVID-19 crisis has changed many things. Millions of people have lost their jobs, untold numbers of people fear they could lose their incomes any day, and people are having constant worries for their relates health and their own. 
+
+There are many factors that determines people’s satisfaction and well being of their life. It could be people’s health, income, family, religion, or other elements that makes them feel satisfied. Specially, in situation where we are living in full of uncertainty, people are feeling more stressed and those concerns give negative influence on their own’s well being. Under the circumstances we wanted to take a close look on which factors of people’s life has the most impact on people’s satisfaction of their lives.
+
+The data set we chose for this assignment contains responses of the General Social Survey conducted in 2017. The 2017 GSS data are monitoring changes in the living conditions and well being of Canadians over time. The 2017 GSS data includes variety of different variables such as, age, sex, education, feelings life, self rated health, income, etc. With the collected data we can analyze how people’s satisfaction score is dependent and has significant relationship with different factor variables.
+
+The following sections will use statistical methods to build new models and analyze the data. It includes cleaning the data into simpler model, linear regression modeling to find the significance of satisfaction score and predictor variables, comparing and creating graphical visualizations.
+
+
 
 ## Data
 Introduce the data, explain why it was selected. Make sure to comment on important features and highlight any potential drawbacks to the data.
