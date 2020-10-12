@@ -3,6 +3,7 @@ title: "Analysis on key factors affecting life satisfaction"
 author: "Woolim Kim, Yena Joo, Guemin Kim"
 date: "Oct 19, 2020"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 ---
@@ -102,43 +103,68 @@ Since we want to observe how the life satisfaction score is related to potential
 
 Introduce the selected model here. It is expected that you will use some mathematical notation here. If you do please ensure that all notation is explained. You may also want to discuss any special (hypothetical) cases of your model here, as well as any caveats.  
 
-```{r}
+**  
+
+Now, we are going to fit a multiple linear regression model in order to find linear associations between satisfaction_score and other predictor variables.  
+
+```{r include = F, echo = F, warning = F, message= F}
 # General Linear Regression Model
+# for satisfaction_score by all predictor variables
 satisfaction_lm <- lm(satisfaction_score ~ as.factor(self_rated_health) 
                       + as.factor(self_rated_mental_health) 
                       + family_income 
                       + average_hours_worked, data = life_satisfaction_data)
-summary(satisfaction_lm)
-
-# Linear Regression Model 
-# relationship between working hours and health condition
-# (Response: self_rated_health, Predictor: average_hours_worked)
-health_lm <- lm(self_rated_health ~ average_hours_worked, data = life_satisfaction_data)
-summary(health_lm)
-
-# Linear Regression Model (Predictor: physical and mental health ratings)
-lm1 <- lm(satisfaction_score ~ as.factor(self_rated_health) 
-          + as.factor(self_rated_mental_health), data = life_satisfaction_data)
-summary(lm1)
-
-# Linear Regression Model (Predictor: income of the family)
-lm2 <- lm(satisfaction_score ~ family_income, data = life_satisfaction_data)
-summary(lm2)
-
-# Linear Regression Model (Predictor: )
-lm3 <- lm(satisfaction_score ~ average_hours_worked, data = life_satisfaction_data)
-summary(lm3)
-
-immigrant_data <- data %>% select(caseid, age, sex, feelings_life, 
-                                  age_immigration, landed_immigrant, citizenship_status) %>%
-  filter(landed_immigrant != "Don't know", citizenship_status != "Don't know")
-table(immigrant_data$citizenship_status)
-
-# Logit Regression Model
-# lm4 <- lm(feelings_life ~ as.factor(landed_immigrant), data = immigrant_data, family = "binomial")
-# summary(lm4)
-
 ```
+
+Here is the summary of the multiple linear regression model:  
+
+```{r echo = F, warning = F, message = F}
+summary(satisfaction_lm)
+```
+  
+As we can observe from the output, estimated satisfaction_score increases as each of self_rated_health, self_rated_mental_health and family_income increases; however, the slope estimates for average_hours_work are found to be quite inconsistent, because there is a decrease in slope estimates from 0.29608 to 0.23252 in the first two intervals of average_hours_work, but it increases again in the thrid and fourth intervals.  
+Furthermore, p-values for average_hours_worked that are much greater than the significance level of 0.05 provide us with more evidence that there are no linear relationship between the average working hours and the life satisfaction score.  
+Therefore, the regression model suggests that only the physical health condition, mental health condition and financial condition have positive linear relationships with the life satisfaction score.  
+
+Now that we've found out the response variable has linear relationships with some of the predictor variables, ask yourslef: are the predictor variables equally important in terms of explaning the variability in satisfaction_score?  
+
+The answer is 'No'.  
+
+Although they all have positive linear relationships with the response variable, not all variables may contribute significantly in explaining the variability of the response variable.  
+
+Hence, we would now like to identify the most important predictor variable in this regression model.  
+
+There are two ways we can identify the most important predictor^[One way is to compare the standardized regression coefficients and the other way is to compare the increases in R-squared when each predictor is added to the regression model. For this analysis, specifically, we could not use the first method, because our model contains categorical predictor variable which cannot be standardized.]
+
+The one that we are going to use in this analysis is by comparing the changes in $R^2$ for the last variable added to the model. This is a valid method for identifying which predictor explains the most variability in the response variable, because when a newly added predictor variable is the only difference between the two models, the associated change in $R^2$ will represent the 'goodness-of-fit'.  
+
+To be more specific, we are going to begin with fitting a linear model with only one predictor, and then add one predictor to the model at a time to see how much $R^2$ changes when each variable is added.
+
+Key point in this method is to identify the predictor variable with the largest increase in $R^2$ when it is the last variable added to the model.  
+
+```{r include = F, echo = F, warning = F, message = F}
+# Simple Linear Regression Model with predictor self_rated_health
+first <- lm(satisfaction_score ~ self_rated_health, data = life_satisfaction_data)
+first_R2 <- summary(first)$r.squared
+
+second <- lm(satisfaction_score ~ self_rated_health + self_rated_mental_health, data = life_satisfaction_data)
+second_R2 <-summary(second)$r.squared
+
+third <- lm(satisfaction_score ~ self_rated_health + self_rated_mental_health + family_income, data = life_satisfaction_data)
+third_R2 <- summary(third)$r.squared
+```
+
+This is the table with $R^2$ values in each model, and the change in $R^2$ as more variables are added:  
+```{r echo = F, warning = F, message = F}
+tibble(R_squared = c(first_R2, second_R2, third_R2), Change = c(first_R2, second_R2 - first_R2, third_R2 - second_R2))
+```
+
+As it is shown in the table, there is a greatest increase in $R^2$ when the second predictor, self_rated_mental_health is added to the model. This increase is quite close the $R^2$ of our initial simple linear regression model with predictor self_rated_health.  
+
+Hence, the result suggests that both physical and mental health are significant predictors, however, mental health is the most important predictor in explaining the variability of the life satisfaction score.
+
+
+
 
 ```{r}
 
