@@ -1,6 +1,6 @@
 ---
-title: "Title of Your Report"
-author: "Guemin Kim, Woolim Kim, Yena Joo"
+title: "Analysis on key factors affecting life satisfaction"
+author: "Woolim Kim, Yena Joo, Guemin Kim"
 date: "Oct 19, 2020"
 output: pdf_document
 ---
@@ -9,7 +9,37 @@ output: pdf_document
 library(dplyr)
 library(tidyverse)
 data <- read_csv("gss.csv")
-data
+```
+
+## Analysis on key factors affecting life satisfaction
+
+# Woolim Kim, Yena Joo, Guemin Kim
+# Oct 19, 2020
+
+## Abstract
+
+Here is where you give a brief (one paragraph overview of your entire paper). This should include some background/introduction, some methodology, results and conclusions.
+
+## Introduction
+
+Here is where you should give insight into the setting and introduce the goal of the analysis. Here you can introduce ideas and basic concepts regarding the study setting and the potential model. Again, this is the introduction, so you should be explaining the importance of the work that is ahead and hopefully build some suspense for the reader. You can also highlight what will be included in the subsequent sections.
+
+
+## Data
+Introduce the data, explain why it was selected. Make sure to comment on important features and highlight any potential drawbacks to the data.
+
+** Guemin  
+The data set we chose for this assignment contains responses of the General Social Survey conducted in 2017. The contents of the survey include some characteristics of diverse families in Canada, their socio-economic status, as well as other subjective information such as the respondent's life satisfaction and health conditions. 
+
+Since we want to identify some key factors affecting one's life satisfaction as mentioned previously, the focus of our analysis will be "Health and subjective well-being". 
+
+The reason for chosing the 2017 GSS is because it is the most recent^[As it is stated in the documentation of the GSS, one of the primary objectives of the General Social Survey is to monitor the well being of Canadians over time.
+As a result, every suvery conducted so far contain the responses related to the questions asking for the respondents' well being, and the 2017 GSS is the most recent survey with such reponses.] survey that includes  the "Health and subjective well being" concept.
+
+Since the original data set contains too many variables that are not neccessary, we are going to clean the data set prior to analysis by removing them.  
+
+```{r include = F, echo = F, warning = F, message = F}
+# life satisfaction data with some potential factors
 life_satisfaction_data <- data %>% 
   select(caseid, age, sex, feelings_life, self_rated_health, self_rated_mental_health, 
          income_family, average_hours_worked) %>% 
@@ -26,23 +56,58 @@ life_satisfaction_data <- data %>%
                                               self_rated_mental_health == "Poor" ~1, 
                                               self_rated_mental_health == "Don't know" ~ 0)) %>%
   filter(self_rated_health != 0, self_rated_mental_health != 0, 
-         average_hours_worked != "Don't know")
-life_satisfaction_data
-#comment-woolim
+         average_hours_worked != "Don't know") %>%
+  rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family)
+  
+```
+
+This is what our new data looks like:
+```{r echo = F, warning = F, message = F}
+head(life_satisfaction_data)
+```
+
+Our data contains 8 variables: ID, age, sex, satisfaction_score, self_rated_health, self_rated_mental_health, family_income, and average_hours_worked.  
+
+Detailed descriptions of some variables:  
+ * satisfaction_score indicates the life satisfaction score on a scale of 0(very dissatisfied) to 10(very satisfied).  
+ * self_rated_health and self_rated_mental health are the physical and mental health ratings, respectively, on a scale of 1(poor) to 5(Excellent) given by the respondent.  
+ * average_hours_worked indicates the average number of hours worked per week.  
+
+
+Since we want to observe how the life satisfaction score is related to potential factors such as health or financial conditions, the response variable of our analysis will be satisfaction_score and the predictors will be the potential factors: self_rated_health, self_rated_mental_health, family_income, and average_hours_worked.
+**
+
+
+
+## Model
+
+Introduce the selected model here. It is expected that you will use some mathematical notation here. If you do please ensure that all notation is explained. You may also want to discuss any special (hypothetical) cases of your model here, as well as any caveats.  
+
+```{r}
 # General Linear Regression Model
-satisfaction_lm <- lm(feelings_life ~ as.factor(self_rated_health)+ as.factor(self_rated_mental_health) + income_family + average_hours_worked, data = life_satisfaction_data)
+satisfaction_lm <- lm(satisfaction_score ~ as.factor(self_rated_health) 
+                      + as.factor(self_rated_mental_health) 
+                      + family_income 
+                      + average_hours_worked, data = life_satisfaction_data)
 summary(satisfaction_lm)
 
-# Linear Regression Model (Predictor: health rating)
-lm1 <- lm(feelings_life ~ as.factor(self_rated_health), data = life_satisfaction_data)
+# Linear Regression Model 
+# relationship between working hours and health condition
+# (Response: self_rated_health, Predictor: average_hours_worked)
+health_lm <- lm(self_rated_health ~ average_hours_worked, data = life_satisfaction_data)
+summary(health_lm)
+
+# Linear Regression Model (Predictor: physical and mental health ratings)
+lm1 <- lm(satisfaction_score ~ as.factor(self_rated_health) 
+          + as.factor(self_rated_mental_health), data = life_satisfaction_data)
 summary(lm1)
 
 # Linear Regression Model (Predictor: income of the family)
-lm2 <- lm(feelings_life ~ income_family, data = life_satisfaction_data)
+lm2 <- lm(satisfaction_score ~ family_income, data = life_satisfaction_data)
 summary(lm2)
 
 # Linear Regression Model (Predictor: )
-lm3 <- lm(feelings_life ~ average_hours_worked, data = life_satisfaction_data)
+lm3 <- lm(satisfaction_score ~ average_hours_worked, data = life_satisfaction_data)
 summary(lm3)
 
 immigrant_data <- data %>% select(caseid, age, sex, feelings_life, 
@@ -53,32 +118,8 @@ table(immigrant_data$citizenship_status)
 # Logit Regression Model
 # lm4 <- lm(feelings_life ~ as.factor(landed_immigrant), data = immigrant_data, family = "binomial")
 # summary(lm4)
+
 ```
-
-```{r}
-library(ggplot2)
-```
-
-## Title of your Report
-
-# Name(s) of Author(s) 
-# Date
-
-## Abstract
-
-Here is where you give a brief (one paragraph overview of your entire paper). This should include some background/introduction, some methodology, results and conclusions.
-
-## Introduction
-
-Here is where you should give insight into the setting and introduce the goal of the analysis. Here you can introduce ideas and basic concepts regarding the study setting and the potential model. Again, this is the introduction, so you should be explaining the importance of the work that is ahead and hopefully build some suspense for the reader. You can also highlight what will be included in the subsequent sections.
-
-## Data
-
-Introduce the data, explain why it was selected. Make sure to comment on important features and highlight any potential drawbacks to the data.
-
-## Model
-
-Introduce the selected model here. It is expected that you will use some mathematical notation here. If you do please ensure that all notation is explained. You may also want to discuss any special (hypothetical) cases of your model here, as well as any caveats.  
 
 ## Results
 
@@ -100,6 +141,11 @@ Here you discuss subsequent work to be done after this report. This can include 
 
 
 ## References
+
+1. GSS Data: 
+
+2. Data Cleaning Code:
+
 
 
 
