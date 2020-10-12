@@ -2,7 +2,9 @@
 title: "Analysis on key factors affecting life satisfaction"
 author: "Woolim Kim, Yena Joo, Guemin Kim"
 date: "Oct 19, 2020"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -18,7 +20,12 @@ data <- read_csv("gss.csv")
 
 ## Abstract
 
-Here is where you give a brief (one paragraph overview of your entire paper). This should include some background/introduction, some methodology, results and conclusions.
+We use the 2017 General Social Survey(GSS) data to study the response of their _____ to ____. The target population includes all non-institutionalized persons 15 years of age and older, living in the 10 provinces of Canada. The frame population is everyone who is registered combining both landline and cellular with Statistics Canada’s address registers, and the sampled population is whoever was reached via telephone. The target populations were stratified into 27 strata by geographic areas—mostly CMA— and simple random sampling without replacement of records was performed in each stratum.  
+We find….  
+1. a strong ….  
+2. no overall effects in ….  
+
+Together, these results suggest that…….
 
 ## Introduction
 
