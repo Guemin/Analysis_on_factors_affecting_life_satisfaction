@@ -77,8 +77,7 @@ life_satisfaction_data <- data %>%
                                               self_rated_mental_health == "Don't know" ~ 0)) %>%
   filter(self_rated_health != 0, self_rated_mental_health != 0, 
          average_hours_worked != "Don't know") %>%
-  rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family, work_hours = average_hours_worked) %>%
-  mutate(self_rated_total_health = (self_rated_health + self_rated_mental_health)/2) #merged mental health and physical health in to one variable.
+  rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family, work_hours = average_hours_worked)
   
 ```
 
@@ -170,10 +169,10 @@ Hence, the result suggests that both physical and mental health are significant 
 ```{r}
 
 life_satisfaction_data %>%
-  ggplot(aes(x = as.factor(self_rated_total_health), y = (satisfaction_score))) + geom_boxplot() +
-  ggtitle("How Mental and Physical Health Affects People's Satisfaction") +
+  ggplot(aes(x = as.factor(self_rated_mental_health), y = (satisfaction_score))) + geom_boxplot() +
+  ggtitle("How Mental Health Affects People's Satisfaction") +
   ylab("Satisfaction score") +
-  xlab("Self rated total health")
+  xlab("Self rated mental health")
 
 ```
 
