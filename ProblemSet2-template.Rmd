@@ -176,8 +176,9 @@ On the other hand, since the change in $R^2_{adjusted}$ is relatively small when
 
 Hence, the result suggests that physical and mental health are significant predictors, however, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
 
+Graphical visualization of positive correlation of the mental health and life satisfaction score:
 
-```{r}
+```{r echo = F, warning = F, message = F}
 
 life_satisfaction_data %>%
   ggplot(aes(x = as.factor(self_rated_mental_health), y = (satisfaction_score))) + geom_boxplot() +
@@ -185,21 +186,11 @@ life_satisfaction_data %>%
   ylab("Satisfaction score") +
   xlab("Self rated mental health")
 
-# Ho: mean of satisfaction score increases as self rated mental health increases.
-
-mod_family <- lm(satisfaction_score~family_income, data=life_satisfaction_data)
-summary(mod_family)
-mod_mental <- lm(satisfaction_score~self_rated_mental_health, data = life_satisfaction_data)
-boxplot(satisfaction_score ~ family_income, data = life_satisfaction_data)
-
-par(mfrow=c(2,2))
-plot(mod_mental)
-
-income_table<-table(life_satisfaction_data$family_income)
-prop.table(income_table)
-
-
 ```
+Figure 1.The boxplot has positive linear relationship between the two variables. 
+
+It signifies that average of life satisfaction score increases as the self rated mental health increases. 
+
 
 ## Results
 
@@ -209,6 +200,9 @@ Please ensure that everything is well labelled. So if you have multiple histogra
 
 ## Discussion
 
+*Woolim Kim
+The goal of this process is to find what are some factors that affects and has big influence on person's satisfaction of their lives. 
+
 Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).
 
 # Weaknesses
@@ -216,7 +210,7 @@ Here you will discuss conclusions drawn from the results and comment on how it r
 Here we discuss weaknesses of the study, data, analysis, etc. You can also discuss areas for improvement.
 
 *Woolim
-our predictor variable is categorical so we couldnt
+Every statistic data study and analysis includes some bias and weaknesses. One of our weakness is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
 
 # Next Steps
 
