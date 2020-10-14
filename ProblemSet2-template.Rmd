@@ -77,8 +77,7 @@ life_satisfaction_data <- data %>%
                                               self_rated_mental_health == "Don't know" ~ 0)) %>%
   filter(self_rated_health != 0, self_rated_mental_health != 0, 
          average_hours_worked != "Don't know") %>%
-  rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family) %>%
-  mutate(self_rated_total_health = (self_rated_health + self_rated_mental_health)/2) #merged mental health and physical health in to one variable.
+  rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family, work_hours = average_hours_worked)
   
 ```
 
@@ -87,15 +86,15 @@ This is what our new data looks like:
 head(life_satisfaction_data)
 ```
 
-Our data contains 8 variables: ID, age, sex, satisfaction_score, self_rated_health, self_rated_mental_health, family_income, and average_hours_worked.  
+Our data contains 8 variables: ID, age, sex, satisfaction_score, self_rated_health, self_rated_mental_health, family_income, and work_hours.  
 
 Detailed descriptions of some variables:  
  * satisfaction_score indicates the life satisfaction score on a scale of 0(very dissatisfied) to 10(very satisfied).  
  * self_rated_health and self_rated_mental health are the physical and mental health ratings, respectively, on a scale of 1(poor) to 5(Excellent) given by the respondent.  
- * average_hours_worked indicates the average number of hours worked per week.  
+ * work_hours indicates the average number of hours worked per week.  
 
 
-Since we want to observe how the life satisfaction score is related to potential factors such as health or financial conditions, the response variable of our analysis will be satisfaction_score and the predictors will be the potential factors: self_rated_health, self_rated_mental_health, family_income, and average_hours_worked.
+Since we want to observe how the life satisfaction score is related to potential factors such as health or financial conditions, the response variable of our analysis will be satisfaction_score and the predictors will be the potential factors: self_rated_health, self_rated_mental_health, family_income, and work_hours.
 **
 
 
@@ -114,7 +113,7 @@ Now, we are going to fit a multiple linear regression model in order to find lin
 satisfaction_lm <- lm(satisfaction_score ~ as.factor(self_rated_health) 
                       + as.factor(self_rated_mental_health) 
                       + family_income 
-                      + average_hours_worked, data = life_satisfaction_data)
+                      + work_hours, data = life_satisfaction_data)
 ```
 
 Here is the summary of the multiple linear regression model:  
@@ -123,8 +122,8 @@ Here is the summary of the multiple linear regression model:
 summary(satisfaction_lm)
 ```
   
-As we can observe from the output, estimated satisfaction_score increases as each of self_rated_health, self_rated_mental_health and family_income increases; however, the slope estimates for average_hours_work are found to be quite inconsistent, because there is a decrease in slope estimates from 0.29608 to 0.23252 in the first two intervals of average_hours_work, but it increases again in the thrid and fourth intervals.  
-Furthermore, p-values for average_hours_worked that are much greater than the significance level of 0.05 provide us with more evidence that there are no linear relationship between the average working hours and the life satisfaction score.  
+As we can observe from the output, estimated satisfaction_score increases as each of self_rated_health, self_rated_mental_health and family_income increases; however, the slope estimates for work_hours are found to be quite inconsistent, because there is a decrease in slope estimates from 0.29608 to 0.23252 in the first two intervals of work_hours, but it increases again in the thrid and fourth intervals.  
+Furthermore, p-values for average_hours_worked that are much greater than the significance level of 0.05 provide us with more evidence that there is no linear relationship between the average working hours and the life satisfaction score.  
 Therefore, the regression model suggests that only the physical health condition, mental health condition and financial condition have positive linear relationships with the life satisfaction score.  
 
 Now that we've found out the response variable has linear relationships with some of the predictor variables, ask yourslef: are the predictor variables equally important in terms of explaning the variability in satisfaction_score?  
@@ -135,11 +134,11 @@ Although they all have positive linear relationships with the response variable,
 
 Hence, we would now like to identify the most important predictor variable in this regression model.  
 
-There are two ways we can identify the most important predictor^[One way is to compare the standardized regression coefficients and the other way is to compare the increases in R-squared when each predictor is added to the regression model. For this analysis, specifically, we could not use the first method, because our model contains categorical predictor variable which cannot be standardized.]
+There are two ways to do this^[One way is to compare the standardized regression coefficients and the other way is to compare the increases in R-squared when each predictor is added to the regression model. For this analysis, specifically, we could not use the first method, because our model contains categorical predictor variable which cannot be standardized.].
 
-The one that we are going to use in this analysis is by comparing the changes in $R^2$ for the last variable added to the model. This is a valid method for identifying which predictor explains the most variability in the response variable, because when a newly added predictor variable is the only difference between the two models, the associated change in $R^2$ will represent the 'goodness-of-fit'.  
+In this analysis, we are going to use the method where we compute and compare the changes in$R^2$ for the last variable added to the model. This is a valid method for identifying which predictor explains the most variability in the response variable, because when a newly added predictor variable is the only difference between the two models, the associated change in $R^2$ will represent the 'goodness-of-fit'.  
 
-To be more specific, we are going to begin with fitting a linear model with only one predictor, and then add one predictor to the model at a time to see how much $R^2$ changes when each variable is added.
+To be more specific, we are going to begin with fitting a linear regression model with only one predictor variable, and then add one predictor to the model at a time to see how much $R^2$ changes when each variable is added.
 
 Key point in this method is to identify the predictor variable with the largest increase in $R^2$ when it is the last variable added to the model.  
 
@@ -157,7 +156,7 @@ third_R2 <- summary(third)$r.squared
 
 This is the table with $R^2$ values in each model, and the change in $R^2$ as more variables are added:  
 ```{r echo = F, warning = F, message = F}
-tibble(R_squared = c(first_R2, second_R2, third_R2), Change = c(first_R2, second_R2 - first_R2, third_R2 - second_R2))
+tibble(Predictor = c("self_rated_health", "self_rated_health + self_rated_mental_health", "self_rated_health + self_rated_mental_health + family_income"), R_squared = c(first_R2, second_R2, third_R2), Change = c(first_R2, second_R2 - first_R2, third_R2 - second_R2))
 ```
 
 As it is shown in the table, there is a greatest increase in $R^2$ when the second predictor, self_rated_mental_health is added to the model. This increase is quite close the $R^2$ of our initial simple linear regression model with predictor self_rated_health.  
@@ -170,10 +169,10 @@ Hence, the result suggests that both physical and mental health are significant 
 ```{r}
 
 life_satisfaction_data %>%
-  ggplot(aes(x = as.factor(self_rated_total_health), y = (satisfaction_score))) + geom_boxplot() +
-  ggtitle("How Mental and Physical Health Affects People's Satisfaction") +
+  ggplot(aes(x = as.factor(self_rated_mental_health), y = (satisfaction_score))) + geom_boxplot() +
+  ggtitle("How Mental Health Affects People's Satisfaction") +
   ylab("Satisfaction score") +
-  xlab("Self rated total health")
+  xlab("Self rated mental health")
 
 ```
 
