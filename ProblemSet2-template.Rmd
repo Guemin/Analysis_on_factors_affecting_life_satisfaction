@@ -3,9 +3,9 @@ title: "Analysis on key factors affecting life satisfaction"
 author: "Woolim Kim, Yena Joo, Guemin Kim"
 date: "Oct 19, 2020"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
