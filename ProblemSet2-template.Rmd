@@ -185,6 +185,20 @@ life_satisfaction_data %>%
   ylab("Satisfaction score") +
   xlab("Self rated mental health")
 
+# Ho: mean of satisfaction score increases as self rated mental health increases.
+
+mod_family <- lm(satisfaction_score~family_income, data=life_satisfaction_data)
+summary(mod_family)
+mod_mental <- lm(satisfaction_score~self_rated_mental_health, data = life_satisfaction_data)
+boxplot(satisfaction_score ~ family_income, data = life_satisfaction_data)
+
+par(mfrow=c(2,2))
+plot(mod_mental)
+
+income_table<-table(life_satisfaction_data$family_income)
+prop.table(income_table)
+
+
 ```
 
 ## Results
