@@ -3,9 +3,9 @@ title: "Analysis on key factors affecting life satisfaction"
 author: "Woolim Kim, Yena Joo, Guemin Kim"
 date: "Oct 19, 2020"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -47,7 +47,6 @@ The following sections will use statistical methods to build new models and anal
 ## Data
 Introduce the data, explain why it was selected. Make sure to comment on important features and highlight any potential drawbacks to the data.
 
-** Guemin  
 The data set we chose for this assignment contains responses of the General Social Survey conducted in 2017. The contents of the survey include some characteristics of diverse families in Canada, their socio-economic status, as well as other subjective information such as the respondent's life satisfaction and health conditions. 
 
 Since we want to identify some key factors affecting one's life satisfaction as mentioned previously, the focus of our analysis will be "Health and subjective well-being". 
@@ -55,7 +54,12 @@ Since we want to identify some key factors affecting one's life satisfaction as 
 The reason for choosing the 2017 GSS is because it is the most recent^[As it is stated in the documentation of the GSS, one of the primary objectives of the General Social Survey is to monitor the well being of Canadians over time.
 As a result, every survey conducted so far contain the responses related to the questions asking for the respondents' well being, and the 2017 GSS is the most recent survey with such reponses.] survey that includes  the "Health and subjective well being" concept.
 
-Since the original data set contains too many variables that are not neccessary, we are going to clean the data set prior to analysis by removing them.  
+One of the characteristics of our data set is that the majority of the variables in the data are categorical. However, some disadvantages of using such data is that there is a limit to the kinds of statistical analysis that we can use with our data, as well as numerical operations or quantitative analysis cannot be performed on such data. 
+Not only this, but the data contains some ratio variables which provides ranges of values. Some of the examples of such variables in our data set are income_respondent and average_hours_worked. If these variables were recorded numerically with the exact amounts instead, they could have been more readily available to quantitative analysis as well.  
+
+Lastly, there are number of columns with too many NAs in them. This indicates that the data set contains some unnecessary/pointless variables, because when we want to use such variables in our analysis, any results drawn using those variables could be biased or misleading due to the small sample size. 
+
+Since the original data set contains too many variables that are not necessary, we are going to clean the data set prior to analysis by removing them.
 
 ```{r include = F, echo = F, warning = F, message = F}
 # life satisfaction data with some potential factors
@@ -92,15 +96,14 @@ head(life_satisfaction_data)
 ```
 
 Our data contains 8 variables: ID, age, sex, satisfaction_score, self_rated_health, self_rated_mental_health, family_income, and work_hours.  
-
-Detailed descriptions of some variables:  
+\newpage
+Detailed descriptions of some variables are provided below:  
  * satisfaction_score indicates the life satisfaction score on a scale of 0(very dissatisfied) to 10(very satisfied).  
  * self_rated_health and self_rated_mental health are the physical and mental health ratings, respectively, on a scale of 1(poor) to 5(Excellent) given by the respondent.  
  * work_hours indicates the average number of hours worked per week.  
 
 
 Since we want to observe how the life satisfaction score is related to potential factors such as health or financial conditions, the response variable of our analysis will be satisfaction_score and the predictors will be the potential factors: self_rated_health, self_rated_mental_health, family_income, and work_hours.
-**
 
 
 
