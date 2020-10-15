@@ -74,6 +74,12 @@ life_satisfaction_data <- data %>%
                                               self_rated_mental_health == "Fair" ~ 2, 
                                               self_rated_mental_health == "Poor" ~1, 
                                               self_rated_mental_health == "Don't know" ~ 0)) %>%
+  mutate(income_family = case_when(income_family == "$125,000 and more" ~ 5, 
+                                              income_family == "$100,000 to $ 124,999" ~ 4, 
+                                              income_family == "$75,000 to $99,999" ~ 3, 
+                                              income_family == "$50,000 to $74,999" ~ 2, 
+                                              income_family == "$25,000 to $49,999" ~1, 
+                                              income_family == "Less than $25,000" ~ 0)) %>%
   filter(self_rated_health != 0, self_rated_mental_health != 0, 
          average_hours_worked != "Don't know") %>%
   rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family, work_hours = average_hours_worked)
@@ -111,7 +117,7 @@ Now, we are going to fit a multiple linear regression model in order to find lin
 # for satisfaction_score by all predictor variables
 satisfaction_lm <- lm(satisfaction_score ~ as.factor(self_rated_health) 
                       + as.factor(self_rated_mental_health) 
-                      + family_income 
+                      + as.factor(family_income)
                       + work_hours, data = life_satisfaction_data)
 ```
 
@@ -184,6 +190,12 @@ life_satisfaction_data %>%
   ggtitle("How Mental Health Affects People's Satisfaction") +
   ylab("Satisfaction score") +
   xlab("Self rated mental health")
+
+mod<- lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data)
+#plot(mod)
+X <- resid(mod)
+qqnorm(X)
+qqline(X, col = 'red')
 
 ```
 Figure 1.The boxplot has positive linear relationship between the two variables. 
