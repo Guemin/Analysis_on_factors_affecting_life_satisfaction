@@ -75,9 +75,17 @@ life_satisfaction_data <- data %>%
                                               self_rated_mental_health == "Fair" ~ 2, 
                                               self_rated_mental_health == "Poor" ~1, 
                                               self_rated_mental_health == "Don't know" ~ 0)) %>%
+    mutate(income_family = case_when(income_family == "Less than $25,000" ~ 25000/2,
+                                    income_family == "$25,000 to $49,999" ~ ((49999 + 25000)/2),
+                                    income_family == "$50,000 to $74,999" ~ ((50000 + 74999)/2),
+                                    income_family == "$75,000 to $99,999" ~ ((75000 + 99999)/2),
+                                    income_family == "$100,000 to $ 124,999" ~ 
+                                      ((100000 + 124999)/2),
+                                    income_family == "$125,000 and more" ~ 125000
+                                    )) %>%
   filter(self_rated_health != 0, self_rated_mental_health != 0, 
          average_hours_worked != "Don't know") %>%
-  rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family, work_hours = average_hours_worked)
+  rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family, work_hours = average_hours_worked) 
   
 ```
 
@@ -185,6 +193,9 @@ life_satisfaction_data %>%
   ggtitle("How Mental Health Affects People's Satisfaction") +
   ylab("Satisfaction score") +
   xlab("Self rated mental health")
+
+
+
 
 ```
 Figure 1.The boxplot has positive linear relationship between the two variables. 
