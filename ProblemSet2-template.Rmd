@@ -22,12 +22,11 @@ data <- read_csv("gss.csv")
 ## Abstract
 *Here is where you give a brief (one paragraph overview of your entire paper). This should include some background/introduction, some methodology, results and conclusions.*
 
-We use the 2017 General Social Survey(GSS) data to study the response of people in Canada's life satisfactions to ____. The target population includes all non-institutionalized persons 15 years of age and older, living in the 10 provinces of Canada. The frame population is everyone who is registered combining both landline and cellular with Statistics Canada’s address registers, and the sampled population is whoever is reached via telephone. The target population was stratified into 27 strata by geographic areas -- mostly CMA -- and simple random sampling without replacement of records was performed in each stratum.  
-Through the analysis, We find….  
-1. a strong ….  
-2. no overall effects in ….  
-
-Together, these results suggest that…….
+We use the 2017 General Social Survey(GSS) data to study the response of people in Canada's life satisfactions to ____. The target population includes all non-institutionalized persons 15 years of age and older, living in the 10 provinces of Canada. The frame population is everyone who is registered combining both landline and cellular with Statistics Canada’s address registers, and the sampled population is whoever is reached via telephone. The target population was divided into 27 strata by geographic areas -- mostly CMA -- and simple random sampling without replacement of records was performed in each stratum (which means, from each stratum/group, everyone has an equal probability of being chosen).    
+Through the analysis, We find:
+1. a strong linear relationship between mental health rate and life satisfaction rate. People who rate themselves as "mentally healthy" are relatively more satisfied with their lives. The analysis also shows a linear relationship between health rate and life satisfaction. 
+2. no overall effects of hours worked on life satisfaction level. 
+Together, these results suggest that no matter how much the income or working hours are, the most important factor that decides people's life satisfaction level is their mental and physical health. 
 
 ## Introduction
 
@@ -75,17 +74,9 @@ life_satisfaction_data <- data %>%
                                               self_rated_mental_health == "Fair" ~ 2, 
                                               self_rated_mental_health == "Poor" ~1, 
                                               self_rated_mental_health == "Don't know" ~ 0)) %>%
-    mutate(income_family = case_when(income_family == "Less than $25,000" ~ 25000/2,
-                                    income_family == "$25,000 to $49,999" ~ ((49999 + 25000)/2),
-                                    income_family == "$50,000 to $74,999" ~ ((50000 + 74999)/2),
-                                    income_family == "$75,000 to $99,999" ~ ((75000 + 99999)/2),
-                                    income_family == "$100,000 to $ 124,999" ~ 
-                                      ((100000 + 124999)/2),
-                                    income_family == "$125,000 and more" ~ 125000
-                                    )) %>%
   filter(self_rated_health != 0, self_rated_mental_health != 0, 
          average_hours_worked != "Don't know") %>%
-  rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family, work_hours = average_hours_worked) 
+  rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family, work_hours = average_hours_worked)
   
 ```
 
@@ -120,7 +111,7 @@ Now, we are going to fit a multiple linear regression model in order to find lin
 # for satisfaction_score by all predictor variables
 satisfaction_lm <- lm(satisfaction_score ~ as.factor(self_rated_health) 
                       + as.factor(self_rated_mental_health) 
-                      + as.factor(family_income) 
+                      + family_income 
                       + work_hours, data = life_satisfaction_data)
 ```
 
@@ -194,14 +185,7 @@ life_satisfaction_data %>%
   ylab("Satisfaction score") +
   xlab("Self rated mental health")
 
-mod<-lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data)
-plot(mod)
-X <- resid(mod)
-qqnorm(X)
-qqline(X, col = 'red')
-
 ```
- 
 Figure 1.The boxplot has positive linear relationship between the two variables. 
 
 It signifies that average of life satisfaction score increases as the self rated mental health increases. 
@@ -217,6 +201,7 @@ Please ensure that everything is well labelled. So if you have multiple histogra
 
 *Woolim Kim
 The goal of this process is to find what are some factors that affects and has big influence on person's satisfaction of their lives. 
+
 
 Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).
 
