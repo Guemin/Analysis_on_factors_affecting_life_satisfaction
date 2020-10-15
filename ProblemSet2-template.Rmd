@@ -120,7 +120,7 @@ Now, we are going to fit a multiple linear regression model in order to find lin
 # for satisfaction_score by all predictor variables
 satisfaction_lm <- lm(satisfaction_score ~ as.factor(self_rated_health) 
                       + as.factor(self_rated_mental_health) 
-                      + family_income 
+                      + as.factor(family_income) 
                       + work_hours, data = life_satisfaction_data)
 ```
 
@@ -194,10 +194,14 @@ life_satisfaction_data %>%
   ylab("Satisfaction score") +
   xlab("Self rated mental health")
 
-
-
+mod<-lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data)
+plot(mod)
+X <- resid(mod)
+qqnorm(X)
+qqline(X, col = 'red')
 
 ```
+ 
 Figure 1.The boxplot has positive linear relationship between the two variables. 
 
 It signifies that average of life satisfaction score increases as the self rated mental health increases. 
