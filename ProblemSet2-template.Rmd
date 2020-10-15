@@ -215,6 +215,7 @@ Figure 1.The boxplot has positive linear relationship between the two variables.
 
 It signifies that average of life satisfaction score increases as the self rated mental health increases. 
 
+The normal QQ plot shown above graphically analyze and compare two probability distributions by plotting their quantiles against each other. The bottome end of the Q-Q plot is below the straight line, this shows that the distribution has a longer tail to its left which means it is left-skewed.
 
 ## Results
 
