@@ -240,9 +240,12 @@ Figure 1.The boxplot has positive linear relationship between the two variables.
 
 It signifies that average of life satisfaction score increases as the self rated mental health increases. 
 
-The normal QQ plot shown above graphically analyze and compare two probability distributions by plotting their quantiles against each other. The bottome end of the Q-Q plot is below the straight line, this shows that the distribution has a longer tail to its left which means it is left-skewed.
+The normal QQ plot shown above graphically analyze and compare two probability distributions by plotting their quantiles against each other. The bottom end of the Q-Q plot is below the straight line, this shows that the distribution has a longer tail to its left which means it is left-skewed.
 
 Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).
+
+-normality of errors at each value by looking at QQ plot, the distribution of errors 
+The deviations from the straight line are huge which doesnt indicate normal distribution
 
 # Weaknesses
 
@@ -251,9 +254,16 @@ Here we discuss weaknesses of the study, data, analysis, etc. You can also discu
 *Woolim
 Every statistic data study and analysis includes some bias and weaknesses. One of our weakness is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
 
+- there might be omitted variable bias? 
+- 
+
+
 # Next Steps
 
 Here you discuss subsequent work to be done after this report. This can include next steps in terms of statistical analysis (perhaps there is a more efficient algorithm available, or perhaps there is a caveat in the data that would allow for some new technique). Future steps should also be specified in terms of the study setting (eg. including a follow-up survey on something, or a subsequent study that would complement the conclusions of your report).
+
+- follow up survey on the same topic(life satisfaction vs mental and physical health) and compare the data prior/post COVID-19. 
+- look for other factors that affect life satisfaction rate. (maybe focus on households, family, geographical data, etc)
 
 
 ## References
