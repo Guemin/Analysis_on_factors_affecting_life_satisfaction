@@ -264,15 +264,23 @@ Here you discuss subsequent work to be done after this report. This can include 
 
 - follow up survey on the same topic(life satisfaction vs mental and physical health) and compare the data prior/post COVID-19. 
 - look for other factors that affect life satisfaction rate. (maybe focus on households, family, geographical data, etc)
+-
 
 
 ## References
 
 1. GSS Data: https://sda-artsci-utoronto-ca.myaccess.library.utoronto.ca/cgi-bin/sda/hsda?harcsda4+gss31
+new
+General Social Survey, Cycle 31: 2017: Family. (n.d.). Retrieved October 16, 2020, from https://sda-artsci-utoronto-ca.myaccess.library.utoronto.ca/cgi-bin/sda/hsda?harcsda4+gss31
 
 2. Data Cleaning Code: 
+new
+Alexander, Rohan, and Sam Caetano.( 2019, Sept 16). "gss_cleaning.R”. Retrieved Oct 10. 2020, from
+https://www.tellingstorieswithdata.com/01-03-r_essentials.html
 
 3. Identifying the most significant predictor: https://statisticsbyjim.com/regression/identifying-important-independent-variables/
+new
+Frost, J., Adusei, C., Peeyush, Siyabonga, Sreeja, Narayanan, J., . . . Sachin. (2019, June 13). Identifying the Most Important Independent Variables in Regression Models. Retrieved October 16, 2020, from https://statisticsbyjim.com/regression/identifying-important-independent-variables/
 
 
 
