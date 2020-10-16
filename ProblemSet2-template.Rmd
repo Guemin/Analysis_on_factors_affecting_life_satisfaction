@@ -14,10 +14,10 @@ library(tidyverse)
 data <- read_csv("gss.csv")
 ```
 
-## Analysis on key factors affecting life satisfaction
+# Analysis on key factors affecting life satisfaction
 
-# Woolim Kim, Yena Joo, Guemin Kim
-# Oct 19, 2020
+### Woolim Kim, Yena Joo, Guemin Kim
+### Oct 19, 2020
 
 ## Abstract
 *Here is where you give a brief (one paragraph overview of your entire paper). This should include some background/introduction, some methodology, results and conclusions.*
@@ -45,19 +45,16 @@ The following sections will use statistical methods to build new models and anal
 
 
 ## Data
-Introduce the data, explain why it was selected. Make sure to comment on important features and highlight any potential drawbacks to the data.
 
 The data set we chose for this assignment contains responses of the General Social Survey conducted in 2017. The contents of the survey include some characteristics of diverse families in Canada, their socio-economic status, as well as other subjective information such as the respondent's life satisfaction and health conditions. 
 
 Since we want to identify some key factors affecting one's life satisfaction as mentioned previously, the focus of our analysis will be "Health and subjective well-being". 
 
 The reason for choosing the 2017 GSS is because it is the most recent^[As it is stated in the documentation of the GSS, one of the primary objectives of the General Social Survey is to monitor the well being of Canadians over time.
-As a result, every survey conducted so far contain the responses related to the questions asking for the respondents' well being, and the 2017 GSS is the most recent survey with such reponses.] survey that includes  the "Health and subjective well being" concept.
+As a result, every survey conducted so far contain the responses related to the questions asking for the respondents' well being, and the 2017 GSS is the most recent survey with such responses.] survey that includes  the "Health and subjective well being" topic.
 
-One of the characteristics of our data set is that the majority of the variables in the data are categorical. However, some disadvantages of using such data is that there is a limit to the kinds of statistical analysis that we can use with our data, as well as numerical operations or quantitative analysis cannot be performed on such data. 
-Not only this, but the data contains some ratio variables which provides ranges of values. Some of the examples of such variables in our data set are income_respondent and average_hours_worked. If these variables were recorded numerically with the exact amounts instead, they could have been more readily available to quantitative analysis as well.  
-
-Lastly, there are number of columns with too many NAs in them. This indicates that the data set contains some unnecessary/pointless variables, because when we want to use such variables in our analysis, any results drawn using those variables could be biased or misleading due to the small sample size. 
+One of the characteristics of our data set is that the majority of the variables are categorical. However, some disadvantages of using such data is that there is a limit to the kinds of statistical analysis that we can use with our data, as well as numerical operations or quantitative analysis cannot be performed on such data.  
+Not only this, but there are number of columns in our data set with too many NAs in them, and this indicates that the data set contains some unnecessary/pointless variables. If we want to use such variables in our analysis, we would first need to exclude those 'NA' observations from our data; however, any results drawn from the data could possibly be biased or misleading due to the small number of observations available. 
 
 Since the original data set contains too many variables that are not necessary, we are going to clean the data set prior to analysis by removing them.
 
@@ -66,42 +63,35 @@ Since the original data set contains too many variables that are not necessary, 
 life_satisfaction_data <- data %>% 
   select(caseid, age, sex, feelings_life, self_rated_health, self_rated_mental_health, 
          income_family, average_hours_worked) %>% 
+  # mutate categorical values in self_rated_health into numerical scores
   mutate(self_rated_health = case_when(self_rated_health == "Excellent" ~ 5, 
                                        self_rated_health == "Very good" ~ 4, 
                                        self_rated_health == "Good" ~ 3, 
                                        self_rated_health == "Fair" ~ 2, 
                                        self_rated_health == "Poor" ~1, 
                                        self_rated_health == "Don't know" ~ 0)) %>%
+  # mutate categorical values in self_rated_mental_health into numerical scores
   mutate(self_rated_mental_health = case_when(self_rated_mental_health == "Excellent" ~ 5, 
                                               self_rated_mental_health == "Very good" ~ 4, 
                                               self_rated_mental_health == "Good" ~ 3, 
                                               self_rated_mental_health == "Fair" ~ 2, 
                                               self_rated_mental_health == "Poor" ~1, 
                                               self_rated_mental_health == "Don't know" ~ 0)) %>%
-  mutate(income_family = case_when(income_family == "$125,000 and more" ~ 5, 
-                                              income_family == "$100,000 to $ 124,999" ~ 4, 
-                                              income_family == "$75,000 to $99,999" ~ 3, 
-                                              income_family == "$50,000 to $74,999" ~ 2, 
-                                              income_family == "$25,000 to $49,999" ~1, 
-                                              income_family == "Less than $25,000" ~ 0)) %>%
   filter(self_rated_health != 0, self_rated_mental_health != 0, 
          average_hours_worked != "Don't know") %>%
   rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family, work_hours = average_hours_worked)
-  
 ```
 
-This is what our new data looks like:
+Here is our newly created data:
 ```{r echo = F, warning = F, message = F}
 head(life_satisfaction_data)
 ```
 
 Our data contains 8 variables: ID, age, sex, satisfaction_score, self_rated_health, self_rated_mental_health, family_income, and work_hours.  
-\newpage
-Detailed descriptions of some variables are provided below:  
- * satisfaction_score indicates the life satisfaction score on a scale of 0(very dissatisfied) to 10(very satisfied).  
- * self_rated_health and self_rated_mental health are the physical and mental health ratings, respectively, on a scale of 1(poor) to 5(Excellent) given by the respondent.  
- * work_hours indicates the average number of hours worked per week.  
-
+Detailed descriptions on variables are provided in the footnote^[* satisfaction_score indicates the life satisfaction score on a scale of 0(very dissatisfied) to 10(very satisfied).  
+\    \    \ * self_rated_health and self_rated_mental health are the physical and mental health ratings, respectively,  
+\    \    \ on a scale of 1(poor) to 5(Excellent) given by the respondent.  
+\    \    \ * work_hours indicates the average number of hours worked per week.]
 
 Since we want to observe how the life satisfaction score is related to potential factors such as health or financial conditions, the response variable of our analysis will be satisfaction_score and the predictors will be the potential factors: self_rated_health, self_rated_mental_health, family_income, and work_hours.
 
@@ -115,74 +105,127 @@ Introduce the selected model here. It is expected that you will use some mathema
 
 Now, we are going to fit a multiple linear regression model in order to find linear associations between satisfaction_score and other predictor variables: self_rated_health, self_rated_mental_health, family_income, and work_hours.  
 
+Note, the equation for our regression line looks like this:  
+
+satisfaction_score = $\hat{B_0}\ +\ \hat{B_1}*x_{health2}\ +\ \hat{B_2}*x_{health3}\ +\ \hat{B_3}*x_{health4}\ +\ \hat{B_4}*x_{health5}\ +\ \hat{B_5}*x_{mental2}\ +$  
+$\hat{B_6}*x_{mental3}\ +\ \hat{B_7}*x_{mental4}\ +\ \hat{B_8}*x_{mental5}\ +\ \hat{B_9}*x_{income2}\ +\ \hat{B_{10}}*x_{income3}\ +\ \hat{B_{11}}*x_{income4}\ +$   
+$\hat{B_{12}}*x_{income5}\ +\ \hat{B_{13}}*x_{income6}\ +\ \hat{B_{14}}*x_{work2}\ +\ \hat{B_{15}}*x_{work3}\ +\ \hat{B_{16}}*x_{work4}\ +\ \hat{B_{17}}*x_{work5}$
+
+
+(The detailed descriptions on the x-variables are found in the footnote^[* $x_{health_{i}}$ is a physical health rating indicator for i from 2 to 5  
+\   \   \ (i.e. $x_{health_{5}} = 1$ if the respondent's self_rated_health = 5, and $x_{health_{5}} = 0$ otherwise).  
+\   \   \ * $x_{mental_{i}}$ is a mental health rating indicator for i from 2 to 5.  
+\   \   \ * $x_{income_{i}}$ is an average income range indicator for i from 2 to 6  
+\   \   \ (i.e. $x_{income_{2}} = 1$ if the family income is in the second category "\$25,000 to \$49,999", and $x_{income_{2}}\ =\ 0$ otherwise).  
+\   \   \ * $x_{work_{i}}$ is a working hours range indicator for i from 2 to 5  
+\   \   \ (i.e. $x_{work_{2}} = 1$ if the average hours of work is in the second category "0.1 to 29.9 hours", and $x_{work_{2}}\ =\ 0$ otherwise).].)
+
+As it is shown above, we are going to have a very long equation for our regression line; however, this is inevitable since each of our predictor variables has several levels in them.
+
+One thing we should notice in our data is that both the income and work_hours variables are categorical. To be more specific, we are given a range of values instead of an exact amount as income or average work hours in each variable. 
+However, since our response variable is numerical, and we want to determine if each predictor has a linear relationship with it, we are going to treat our observations in both income and work_hours as numbers by replacing each category in income and work_hours with the midpoint. 
+This process will allow us to investigate the linear relationships between the life satisfaction and the two predictors numerically; however, there is a chance where the true values for income or work_hours could be very different from the midpoint. Therefore, we need to take into account when interpreting the regression model, that the two predictor variables could be biased and so does the result.  
+
 ```{r include = F, echo = F, warning = F, message= F}
+# replace each category in income with its midpoint
+model_data <- life_satisfaction_data %>% 
+  mutate(family_income = case_when(family_income == "$125,000 and more" ~ 125000.00, 
+                                   family_income == "$100,000 to $ 124,999" ~ 112499.50, 
+                                   family_income == "$75,000 to $99,999" ~ 87499.50, 
+                                   family_income == "$50,000 to $74,999" ~ 62499.50, 
+                                   family_income == "$25,000 to $49,999" ~37499.50, 
+                                   family_income == "Less than $25,000" ~ 12500.00)) %>%
+# replace each category in work_hours with its midpoint
+  mutate(work_hours = case_when(work_hours == "0 hour" ~ 0,
+                                work_hours == "0.1 to 29.9 hours" ~ 15.0,
+                                work_hours == "30.0 to 40.0 hours" ~ 35.0,
+                                work_hours == "40.1 to 50.0 hours" ~ 45.05,
+                                work_hours == "50.1 hours and more" ~ 50.1))
+
 # General Linear Regression Model
 # for satisfaction_score by all predictor variables
 satisfaction_lm <- lm(satisfaction_score ~ as.factor(self_rated_health) 
                       + as.factor(self_rated_mental_health) 
                       + as.factor(family_income)
-                      + work_hours, data = life_satisfaction_data)
+                      + as.factor(work_hours), data = model_data)
 ```
+
+After finding some relationships between our response and predictor variables using the regression model, we are going to identify which predictor is the most significant factor in explaining the variability in the response variable.
+In other words, we are going to find out which of the potential factors (among physical health condition, mental health condition, income and average work hours) can explain the variability in life satisfaction the most.
+
+## Results
+
+Here you will include all results. This includes descriptive statistics, graphs, figures, tables, and model results. Please ensure that everything is well formatted and in a report style. You must also provide an explanation of the results in this section. You can overflow to an Appendix if needed. 
+
+
+Please ensure that everything is well labelled. So if you have multiple histograms and plots, calling them Figure 1, 2, 3, etc. and referencing them as Figure 1, Figure 2, etc. in your report will be expected. The reader should not get lost in a sea of information. Make sure to have the results be clean, well formatted and digestible.
 
 Here is the summary of the multiple linear regression model:  
 
 ```{r echo = F, warning = F, message = F}
 summary(satisfaction_lm)
 ```
-  
-With the estimates frome the regression output, we know that our regression model has a form:  
+\newpage  
+With the estimates from the regression output, we know that our regression line has a following equation:  
 
-$Satisfaction\ Score = 3.92502 + 0.51471*x_{health2} + 0.83475*x_{health3} +$   $0.98584*x_{health4} + 1.17522*x_{health5} + 1.63274*x_{mental2} +$   $2.69951*x_{mental3} + 3.24499*x_{mental4} + 3.72145*x_{mental5} -$   $0.47951*x_{income1} - 0.36600*x_{income2} -0.14543*x_{income3} -$   $0.12047*x_{income4} + 0.04865x_{income5} + 0.29608*x_{work1} +$   $0.23252*x_{work2} + 0.32056*{work3} + 0.39476*x_{work4}$  
+Satisfaction Score $= 3.44552\ +\ 0.51471*x_{health2}\ +\ 0.83475*x_{health3}\ +$   $0.98584*x_{health4}\ +\ 1.17522*x_{health5}\ +\ 1.63274*x_{mental2} +$   $2.69951*x_{mental3}\ +\ 3.24499*x_{mental4}\ +\ 3.72145*x_{mental5}\ +$   $0.11351*x_{income2}\ +\ 0.33408*x_{income3}\ +\ 0.35903*x_{income4}\ +$   $0.47951*x_{income5}\ +\ 0.52816*x_{income6}\ +\ 0.29608*x_{work1}\ +$   $0.23252*x_{work2}\ +\ 0.32056*x_{work3}\ +\ 0.39476*x_{work4}$  
 
-where $x_{health}$ is a physical health rating indicator (i.e. $x_{health5} = 1$ if the respondent's self_rated_health = 5, and $x_{health5} = 0$ otherwise), $x_{mental}$ is a mental health rating indicator, $x_{income}$ is an average income range indicator, and $x_{work}$ is a working hours indicator. 
+(*Note, you can find the descriptions for  x-variables from the footnotes in the previous page.) 
 
-As we can observe from the output, estimated satisfaction_score increases as each of self_rated_health and self_rated_mental_health and family_income increases; however, the slope estimates for work_hours are found to be quite inconsistent, because there is a decrease in slope estimates from 0.29608 to 0.23252 in the first two intervals of work_hours, but it increases again in the third and fourth intervals.  
-Furthermore, p-values for average_hours_worked that are much greater than the significance level of 0.05 provide us with more evidence that there is no linear relationship between the average working hours and the life satisfaction score. 
+As we can observe from the output, estimated satisfaction_score increases as each of self_rated_health, self_rated_mental_health and family_income increases; however, the slope estimates for work_hours are found to be quite inconsistent, because there is a decrease in slope estimates from 0.29608 to 0.23252 in the first two categories of work_hours, but they increase again in the third and fourth categories.  
+Furthermore, p-values of work_hours that are much greater than the significance level of 0.05 provide us with more evidence that there is no linear relationship between the average working hours and the life satisfaction score. 
 
-On the other hand, the p-values for the family_income estimates are less than the significance level in most cases, but for those with income greater than or equal to $125,000, corresponding p-value is greater than 0.05. Therefore, we need more investigation on whether the change in family_income actually contributes in changing the value of satisfaction_score.  
+Hence, the regression model suggests that only the physical health, mental health and financial conditions have positive linear relationships with the life satisfaction score.  
 
-Hence, for now, the regression model suggests that only the physical and mental health condition have positive linear relationships with the life satisfaction score.  
-
-Now that we've found out the life satisfaction score has linear relationships with both physical and mental health conditions, we want to ask ourselves: are those factors equally important in terms of explaning the variability in satisfaction_score?  
+Now that we've found that the life satisfaction score has linear relationships with physical health, mental health, and financial conditions, we want to ask ourselves: are those factors equally important in terms of explaining the variability in satisfaction_score?  
 
 The answer is 'No'.  
 
 Although they all have positive linear relationships with the response variable, not all variables may contribute significantly in explaining the variability of the response variable.  
+Hence, we would now like to identify the most important predictor variable in this regression model. 
 
-Hence, we would now like to identify the most important predictor variable in this regression model. Also, we will investigate if the family income contributes significantly in explaining the variability of life satisfaction score.
+There are two ways to do this^[One way is to compare the standardized regression coefficients, and the other way is to compare the increases in adjusted $R^2$ when each predictor is added to the regression model. For this analysis, specifically, we cannot use the first method, because our model contains categorical predictor variable which cannot be standardized.].
+In this analysis, specifically, we are going to use the method where we compute and compare the changes in adjusted $R^2$ for the last variable added to the model^[$R^2_{adjusted}\ =\ 1-(1-R^2)*(\frac{n-1}{n-p-1})$ where n is the total sample size and p is the number of additional predictor variables. Hence, unlike $R^2$, if the newly added predictor does not explain variation in the response variable well, $R^2_{adjusted}$ will go down.]. This is a valid method for identifying which predictor explains the most variability in the response variable, because by the definition, $R^2$ gives the percentage of variation in the response variable explained by the regression line, and also, if the newly added predictor variable is the only difference between the two models, the associated change in 'adjusted $R^2$' will represent the 'goodness-of-fit'.  
 
-There are two ways to do this^[One way is to compare the standardized regression coefficients, and the other way is to compare the increases in adjusted $R^2$ when each predictor is added to the regression model. For this analysis, specifically, we cannot not use the first method, because our model contains categorical predictor variable which cannot be standardized.].
+(*Note, we are not using $R^2$ here, because $R^2$ will always be inflated by adding more predictors to the model even if the newly added predictor is not significant.) 
 
-In this analysis, we are going to use the method where we compute and compare the changes in $R^2_{adjusted}$ for the last variable added to the model^[$R^2_{adjusted}\ =\ 1-(1-R^2)*(\frac{n-1}{n-p-1})$ where n is the total sample size and p is the number of additional predictor variables. Hence, unlike $R^2$, if the newly added predictor does not explain variation in the response variable well, $R^2_{adjusted}$ will go down.]. This is a valid method for identifying which predictor explains the most variability in the response variable, because when a newly added predictor variable is the only difference between the two models, the associated change in '$R^2$ Adjusted' will represent the 'goodness-of-fit'.  
-
-*Note, we are using '$R^2$ Adjusted' instead of $R^2$, because even if the newly added predictor is not significant, $R^2$ can be inflated by adding more predictors to the model. 
-
-To be more specific, we are going to begin with fitting a linear model with only one predictor, and then add one predictor to the model at a time to see how much $R^2_{adjusted}$ changes when each variable is added.
+We are going to begin with fitting a linear model with only one predictor, and then add another predictor to the model at a time to see how much $R^2_{adjusted}$ changes when each variable is added.
 
 Key point in this method is to identify the predictor variable with the largest increase in $R^2_{adjusted}$ when it is the last variable added to the model.  
 
 ```{r include = F, echo = F, warning = F, message = F}
 # Simple Linear Regression Model with predictor self_rated_health
 first <- lm(satisfaction_score ~ self_rated_health, data = life_satisfaction_data)
+# adjusted R-squared of the first model
 first_R2 <- summary(first)$adj.r.squared
 
+# self_rated_mental_health added to the first model
 second <- lm(satisfaction_score ~ self_rated_health + self_rated_mental_health, data = life_satisfaction_data)
+# adjusted R-squared of the second model
 second_R2 <-summary(second)$adj.r.squared
 
+# family_income added to the second model
 third <- lm(satisfaction_score ~ self_rated_health + self_rated_mental_health + family_income, data = life_satisfaction_data)
+# adjusted R-squared of the last model
 third_R2 <- summary(third)$adj.r.squared
 ```
 
-This is the table with adjusted $R^2$ values in each model, and the change in $R^2_{adjusted}$ as more variables are added:  
+This is the table with $R^2_{adjusted}$ values in each model, and the change in $R^2_{adjusted}$ as more variables are added:  
 ```{r echo = F, warning = F, message = F}
-tibble(R_squared_adjusted = c(first_R2, second_R2, third_R2), Change = c(first_R2, second_R2 - first_R2, third_R2 - second_R2))
+tibble(Predictors = c("self_rated_health", "self_rated_health + self_rated_mental_health", "self_rated_health + self_rated_mental_health + family_income"), R_squared_adjusted = c(first_R2, second_R2, third_R2), Change = c(first_R2, second_R2 - first_R2, third_R2 - second_R2))
 ```
 
 As it is shown in the table, there is a greatest increase in $R^2_{adjusted}$ when the second predictor, self_rated_mental_health is added to the model. This increase is quite close the $R^2_{adjusted}$ of our initial simple linear regression model with a predictor, self_rated_health.
 
-On the other hand, since the change in $R^2_{adjusted}$ is relatively small when family_income is added to the regression model compared to the previous changes, we know that the family income does not contribute significantly in explaning the variation in the satisfaction score.
+On the other hand, the change in $R^2_{adjusted}$ is relatively small when family_income is added to the regression model compared to the previous changes, and therefore, we know that the family income does not contribute significantly in explaining the variation in the satisfaction score.
 
-Hence, the result suggests that physical and mental health are significant predictors, however, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
+Hence, the result suggests that both physical and mental health are significant predictors, however, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
+
+
+## Discussion
+
+*Woolim Kim
+The goal of this process is to find what are some factors that affects and has big influence on person's satisfaction of their lives. 
 
 Graphical visualization of positive correlation of the mental health and life satisfaction score:
 
@@ -205,18 +248,7 @@ Figure 1.The boxplot has positive linear relationship between the two variables.
 
 It signifies that average of life satisfaction score increases as the self rated mental health increases. 
 
-
-## Results
-
-Here you will include all results. This includes descriptive statistics, graphs, figures, tables, and model results. Please ensure that everything is well formatted and in a report style. You must also provide an explanation of the results in this section. You can overflow to an Appendix if needed. 
-
-Please ensure that everything is well labelled. So if you have multiple histograms and plots, calling them Figure 1, 2, 3, etc. and referencing them as Figure 1, Figure 2, etc. in your report will be expected. The reader should not get lost in a sea of information. Make sure to have the results be clean, well formatted and digestible.
-
-## Discussion
-
-*Woolim Kim
-The goal of this process is to find what are some factors that affects and has big influence on person's satisfaction of their lives. 
-
+The normal QQ plot shown above graphically analyze and compare two probability distributions by plotting their quantiles against each other. The bottome end of the Q-Q plot is below the straight line, this shows that the distribution has a longer tail to its left which means it is left-skewed.
 
 Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).
 
@@ -234,9 +266,13 @@ Here you discuss subsequent work to be done after this report. This can include 
 
 ## References
 
-1. GSS Data: 
+1. GSS Data: https://sda-artsci-utoronto-ca.myaccess.library.utoronto.ca/cgi-bin/sda/hsda?harcsda4+gss31
 
-2. Data Cleaning Code:
+2. Data Cleaning Code: 
+
+3. Identifying the most significant predictor: https://statisticsbyjim.com/regression/identifying-important-independent-variables/
+
+
 
 
 
