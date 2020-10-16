@@ -215,6 +215,7 @@ Hence, the result suggests that both physical and mental health are significant 
 
 
 ## Discussion
+*Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).*
 
 *Woolim Kim
 The goal of this process is to find what are some factors that affects and has big influence on person's satisfaction of their lives. 
@@ -225,7 +226,7 @@ Graphical visualization of positive correlation of the mental health and life sa
 
 life_satisfaction_data %>%
   ggplot(aes(x = as.factor(self_rated_mental_health), y = (satisfaction_score))) + geom_boxplot() +
-  ggtitle("How Mental Health Affects People's Satisfaction") +
+  ggtitle("Figure 1. How Mental Health Affects People's Satisfaction") +
   ylab("Satisfaction score") +
   xlab("Self rated mental health")
 
@@ -236,16 +237,17 @@ qqnorm(X)
 qqline(X, col = 'red')
 
 ```
-Figure 1.The boxplot has positive linear relationship between the two variables. 
+In Figure 1, The boxplot shows positive linear relationship between the two variables(mental health and life satisfaction). It signifies that average of life satisfaction score increases as the self rated mental health increases. 
 
-It signifies that average of life satisfaction score increases as the self rated mental health increases. 
+- Also from the result section, we find that physical health also has a significant positive linear relationship(using estimates and p-value)
+- so we find physical and mental health are two major factors that affect life satisfaction,
+- but the normal QQ plot shows some downside of the distribution(?)
 
 The normal QQ plot shown above graphically analyze and compare two probability distributions by plotting their quantiles against each other. The bottom end of the Q-Q plot is below the straight line, this shows that the distribution has a longer tail to its left which means it is left-skewed.
 
-Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).
-
 -normality of errors at each value by looking at QQ plot, the distribution of errors 
 The deviations from the straight line are huge which doesnt indicate normal distribution
+
 
 # Weaknesses
 
