@@ -30,19 +30,13 @@ Together, these results suggest that no matter how much the income or working ho
 
 ## Introduction
 
+There are many factors that determines one's well being and satisfaction of life. It could be health condition, economic status, relationships, religion, or any other element one would value or prioritize.   
+Particularly, in these uncertain and unprecedented times caused by the COVID-19 pandemic, many people across the wrold are feeling more stressed due to the changes that the pandemic has brought into their lives and those concerns negatively influence their own well being.
+Therefore, as this ongoing COVID-19 crisis reminds us of the importance of well being, our group decided to investigate and determine some factors that influence one's well being and satisfaction of life.
 
-Here is where you should give insight into the setting and introduce the goal of the analysis. Here you can introduce ideas and basic concepts regarding the study setting and the potential model. Again, this is the introduction, so you should be explaining the importance of the work that is ahead and hopefully build some suspense for the reader. You can also highlight what will be included in the subsequent sections.
-
-**INTRO (1)
-In recent periods, COVID-19 crisis has changed many things. Millions of people have lost their jobs, untold numbers of people fear they could lose their incomes any day, and people are having constant worries for their relates health and their own. 
-
-There are many factors that determines people’s satisfaction and well being of their life. It could be people’s health, income, family, religion, or other elements that makes them feel satisfied. Specially, in situation where we are living in full of uncertainty, people are feeling more stressed and those concerns give negative influence on their own’s well being. Under the circumstances we wanted to take a close look on which factors of people’s life has the most impact on people’s satisfaction of their lives.
-
-The data set we chose for this assignment contains responses of the General Social Survey conducted in 2017. The 2017 GSS data are monitoring changes in the living conditions and well being of Canadians over time. The 2017 GSS data includes variety of different variables such as, age, sex, education, feelings life, self rated health, income, etc. With the collected data we can analyze how people’s satisfaction score is dependent and has significant relationship with different factor variables.
-
-The following sections will use statistical methods to build new models and analyze the data. It includes cleaning the data into simpler model, linear regression modeling to find the significance of satisfaction score and predictor variables, comparing and creating graphical visualizations.
-
-
+Throughout this report, we are going to determine and analyze some potential factors that affect one's life satisfaction, as well as to identify the most significant factor among them.  
+To be more specific, in the following sections, we will use statistical methods to build a regression model of life satisfaction score by potential factors, and interpret the regression output to find relationships between the life satisfaction score and potential factors.  
+This process includes cleaning the given data into a simpler, but efficient version, linear regression modelling, graphical visualizations and interpretations of the outputs.
 
 ## Data
 
@@ -165,7 +159,7 @@ Here is the summary of the multiple linear regression model:
 ```{r echo = F, warning = F, message = F}
 summary(satisfaction_lm)
 ```
-\newpage  
+
 With the estimates from the regression output, we know that our regression line has a following equation:  
 
 Satisfaction Score $= 3.44552\ +\ 0.51471*x_{health2}\ +\ 0.83475*x_{health3}\ +$   $0.98584*x_{health4}\ +\ 1.17522*x_{health5}\ +\ 1.63274*x_{mental2} +$   $2.69951*x_{mental3}\ +\ 3.24499*x_{mental4}\ +\ 3.72145*x_{mental5}\ +$   $0.11351*x_{income2}\ +\ 0.33408*x_{income3}\ +\ 0.35903*x_{income4}\ +$   $0.47951*x_{income5}\ +\ 0.52816*x_{income6}\ +\ 0.29608*x_{work1}\ +$   $0.23252*x_{work2}\ +\ 0.32056*x_{work3}\ +\ 0.39476*x_{work4}$  
