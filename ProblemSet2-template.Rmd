@@ -116,6 +116,7 @@ As it is shown above, we are going to have a very long equation for our regressi
 
 One thing we should notice in our data is that both the income and work_hours variables are categorical. To be more specific, we are given a range of values instead of an exact amount as income or average work hours in each variable. 
 However, since our response variable is numerical, and we want to determine if each predictor has a linear relationship with it, we are going to treat our observations in both income and work_hours as numbers by replacing each category in income and work_hours with the midpoint. 
+
 This process will allow us to investigate the linear relationships between the life satisfaction and the two predictors numerically; however, there is a chance where the true values for income or work_hours could be very different from the midpoint. Therefore, we need to take into account when interpreting the regression model, that the two predictor variables could be biased and so does the result.  
 
 ```{r include = F, echo = F, warning = F, message= F}
@@ -212,7 +213,7 @@ On the other hand, the change in $R^2_{adjusted}$ is relatively small when famil
 ## Discussion
 *Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).*
 
-*Woolim Kim
+
 The goal of this process is to find what are some factors that affects and has big influence on person's satisfaction of their lives. 
 
 Graphical visualization of positive correlation of the mental health and life satisfaction score:
@@ -269,17 +270,14 @@ Normality is one of the assumptions in the linear regression model. However, nor
 
 ## References
 
-1. GSS Data: https://sda-artsci-utoronto-ca.myaccess.library.utoronto.ca/cgi-bin/sda/hsda?harcsda4+gss31
-new
+1. GSS Data: 
 General Social Survey, Cycle 31: 2017: Family. (n.d.). Retrieved October 16, 2020, from https://sda-artsci-utoronto-ca.myaccess.library.utoronto.ca/cgi-bin/sda/hsda?harcsda4+gss31
 
 2. Data Cleaning Code: 
-new
 Alexander, Rohan, and Sam Caetano.( 2019, Sept 16). "gss_cleaning.R”. Retrieved Oct 10. 2020, from
 https://www.tellingstorieswithdata.com/01-03-r_essentials.html
 
-3. Identifying the most significant predictor: https://statisticsbyjim.com/regression/identifying-important-independent-variables/
-new
+3. Identifying the most significant predictor: 
 Frost, J., Adusei, C., Peeyush, Siyabonga, Sreeja, Narayanan, J., . . . Sachin. (2019, June 13). Identifying the Most Important Independent Variables in Regression Models. Retrieved October 16, 2020, from https://statisticsbyjim.com/regression/identifying-important-independent-variables/
 
 
