@@ -153,7 +153,7 @@ Here you will include all results. This includes descriptive statistics, graphs,
 Please ensure that everything is well labelled. So if you have multiple histograms and plots, calling them Figure 1, 2, 3, etc. and referencing them as Figure 1, Figure 2, etc. in your report will be expected. The reader should not get lost in a sea of information. Make sure to have the results be clean, well formatted and digestible.
 
 Here is the summary of the multiple linear regression model:  
-
+###summary1
 ```{r echo = F, warning = F, message = F}
 summary(satisfaction_lm)
 ```
@@ -203,6 +203,7 @@ third_R2 <- summary(third)$adj.r.squared
 ```
 
 This is the table with $R^2_{adjusted}$ values in each model, and the change in $R^2_{adjusted}$ as more variables are added:  
+## table1
 ```{r echo = F, warning = F, message = F}
 tibble(Predictors = c("self_rated_health", "self_rated_health + self_rated_mental_health", "self_rated_health + self_rated_mental_health + family_income"), R_squared_adjusted = c(first_R2, second_R2, third_R2), Change = c(first_R2, second_R2 - first_R2, third_R2 - second_R2))
 ```
@@ -229,24 +230,27 @@ life_satisfaction_data %>%
   ggtitle("Figure 1. How Mental Health Affects People's Satisfaction") +
   ylab("Satisfaction score") +
   xlab("Self rated mental health")
+```
+In Figure 1, The boxplot shows a positive linear relationship between the two variables(mental health and life satisfaction). It signifies that average of life satisfaction score increases as the self rated mental health increases. 
 
+- Also from Table 1 and Summary 1 in the result section, we find that physical health also has a significant positive linear relationship (using estimates and p-value, and r-squared)
+
+- so we find physical and mental health are two major factors that affect life satisfaction, however there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using pvalues and estimates)
+
+- but the normal QQ plot shows some downside of the distribution(?)
+```{r}
 mod<- lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data)
 #plot(mod)
 X <- resid(mod)
 qqnorm(X)
 qqline(X, col = 'red')
-
 ```
-In Figure 1, The boxplot shows positive linear relationship between the two variables(mental health and life satisfaction). It signifies that average of life satisfaction score increases as the self rated mental health increases. 
-
-- Also from the result section, we find that physical health also has a significant positive linear relationship(using estimates and p-value)
-- so we find physical and mental health are two major factors that affect life satisfaction,
-- but the normal QQ plot shows some downside of the distribution(?)
-
-The normal QQ plot shown above graphically analyze and compare two probability distributions by plotting their quantiles against each other. The bottom end of the Q-Q plot is below the straight line, this shows that the distribution has a longer tail to its left which means it is left-skewed.
+The normal QQ plot shown above graphically analyze and compare two probability distributions by plotting their quantiles against each other. The bottom end of the Q-Q plot doesn't show a straight line. The distribution has a longer tail to its left which can be interpreted as a left-skewed model.
 
 -normality of errors at each value by looking at QQ plot, the distribution of errors 
 The deviations from the straight line are huge which doesnt indicate normal distribution
+
+- 
 
 
 # Weaknesses
