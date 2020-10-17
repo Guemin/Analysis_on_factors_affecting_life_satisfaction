@@ -16,8 +16,8 @@ data <- read_csv("gss.csv")
 
 # Analysis on key factors affecting life satisfaction
 
-### Woolim Kim, Yena Joo, Guemin Kim
-### Oct 19, 2020
+<!-- ### Woolim Kim, Yena Joo, Guemin Kim -->
+<!-- ### Oct 19, 2020 -->
 
 ## Abstract
 *Here is where you give a brief (one paragraph overview of your entire paper). This should include some background/introduction, some methodology, results and conclusions.*
