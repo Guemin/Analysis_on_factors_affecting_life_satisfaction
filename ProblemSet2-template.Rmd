@@ -231,14 +231,15 @@ In Figure 1, The boxplot shows a positive linear relationship between the two va
 
 - so we find physical and mental health are two major factors that affect life satisfaction, however there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using pvalues and estimates)
 
+- Hence, the result suggests that both physical and mental health are significant predictors, however, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
 
 
 # Weaknesses
 
-Here we discuss weaknesses of the study, data, analysis, etc. You can also discuss areas for improvement.
+*Here we discuss weaknesses of the study, data, analysis, etc. You can also discuss areas for improvement.*
 
 *Woolim
-Every statistic data study and analysis includes some bias and weaknesses. One of our weakness is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
+- Every statistic data study and analysis includes some bias and weaknesses. One of our weakness is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
 
 - there might be omitted variable bias? 
 - but the normal QQ plot shows some downside of the distribution(?)
@@ -253,14 +254,17 @@ The normal QQ plot shown above graphically analyze and compare two probability d
 Normality is one of the assumptions in the linear regression model. However, normality of errors at each value by looking at QQ plot, the deviations from the straight line are huge which doesn't indicate normal distribution. Since the model does not satisfy the assumption, it is considered as a weakness. 
 
 
-
 # Next Steps
 
-Here you discuss subsequent work to be done after this report. This can include next steps in terms of statistical analysis (perhaps there is a more efficient algorithm available, or perhaps there is a caveat in the data that would allow for some new technique). Future steps should also be specified in terms of the study setting (eg. including a follow-up survey on something, or a subsequent study that would complement the conclusions of your report).
+*Here you discuss subsequent work to be done after this report. This can include next steps in terms of statistical analysis (perhaps there is a more efficient algorithm available, or perhaps there is a caveat in the data that would allow for some new technique). Future steps should also be specified in terms of the study setting (eg. including a follow-up survey on something, or a subsequent study that would complement the conclusions of your report).*
 
 - follow up survey on the same topic(life satisfaction vs mental and physical health) and compare the data prior/post COVID-19. 
+
+- seek for interaction effects and do ANOVA tests to figure out if there is any independant variable that is dependent to another independant variable. (ie) age and mental health rate)
+
 - look for other factors that affect life satisfaction rate. (maybe focus on households, family, geographical data, etc)
--
+
+- 
 
 
 ## References
