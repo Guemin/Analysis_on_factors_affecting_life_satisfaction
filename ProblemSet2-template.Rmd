@@ -261,9 +261,7 @@ Normality is one of the assumptions in the linear regression model. However, nor
 
 *Here you discuss subsequent work to be done after this report. This can include next steps in terms of statistical analysis (perhaps there is a more efficient algorithm available, or perhaps there is a caveat in the data that would allow for some new technique). Future steps should also be specified in terms of the study setting (eg. including a follow-up survey on something, or a subsequent study that would complement the conclusions of your report).*
 
-- follow up survey on the same topic(life satisfaction vs mental and physical health) and compare the data prior/post COVID-19. 
-
-- seek for interaction effects and do ANOVA tests to figure out if there is any independant variable that is dependent to another independant variable. (ie) age and mental health rate)
+For the next steps, we could do a follow up survey on the related topic (life satisfaction vs mental and physical health), and compare the data of the prior and post COVID-19. We could see how people's mental health changed due to COVID-19, the life satisfaction rate is expected to decrease in this case. Also, we could seek for interaction effects between few independent variables and do ANOVA tests to figure out if there is any independant variable that is dependent to another independant variable. (ie) how age and mental health rate could be interactive).
 
 - look for other factors that affect life satisfaction rate. (maybe focus on households, family, geographical data, etc)
 
