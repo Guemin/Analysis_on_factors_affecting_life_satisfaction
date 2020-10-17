@@ -147,10 +147,7 @@ In other words, we are going to find out which of the potential factors (among p
 
 ## Results
 
-Here you will include all results. This includes descriptive statistics, graphs, figures, tables, and model results. Please ensure that everything is well formatted and in a report style. You must also provide an explanation of the results in this section. You can overflow to an Appendix if needed. 
-
-
-Please ensure that everything is well labelled. So if you have multiple histograms and plots, calling them Figure 1, 2, 3, etc. and referencing them as Figure 1, Figure 2, etc. in your report will be expected. The reader should not get lost in a sea of information. Make sure to have the results be clean, well formatted and digestible.
+*Here you will include all results. This includes descriptive statistics, graphs, figures, tables, and model results. Please ensure that everything is well formatted and in a report style. You must also provide an explanation of the results in this section. You can overflow to an Appendix if needed. Please ensure that everything is well labelled. So if you have multiple histograms and plots, calling them Figure 1, 2, 3, etc. and referencing them as Figure 1, Figure 2, etc. in your report will be expected. The reader should not get lost in a sea of information. Make sure to have the results be clean, well formatted and digestible.*
 
 Here is the summary of the multiple linear regression model:  
 ###summary1
@@ -212,9 +209,6 @@ As it is shown in the table, there is a greatest increase in $R^2_{adjusted}$ wh
 
 On the other hand, the change in $R^2_{adjusted}$ is relatively small when family_income is added to the regression model compared to the previous changes, and therefore, we know that the family income does not contribute significantly in explaining the variation in the satisfaction score.
 
-Hence, the result suggests that both physical and mental health are significant predictors, however, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
-
-
 ## Discussion
 *Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).*
 
@@ -237,20 +231,6 @@ In Figure 1, The boxplot shows a positive linear relationship between the two va
 
 - so we find physical and mental health are two major factors that affect life satisfaction, however there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using pvalues and estimates)
 
-- but the normal QQ plot shows some downside of the distribution(?)
-```{r}
-mod<- lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data)
-#plot(mod)
-X <- resid(mod)
-qqnorm(X)
-qqline(X, col = 'red')
-```
-The normal QQ plot shown above graphically analyze and compare two probability distributions by plotting their quantiles against each other. The bottom end of the Q-Q plot doesn't show a straight line. The distribution has a longer tail to its left which can be interpreted as a left-skewed model.
-
--normality of errors at each value by looking at QQ plot, the distribution of errors 
-The deviations from the straight line are huge which doesnt indicate normal distribution
-
-- 
 
 
 # Weaknesses
@@ -261,7 +241,17 @@ Here we discuss weaknesses of the study, data, analysis, etc. You can also discu
 Every statistic data study and analysis includes some bias and weaknesses. One of our weakness is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
 
 - there might be omitted variable bias? 
-- 
+- but the normal QQ plot shows some downside of the distribution(?)
+```{r}
+mod<- lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data)
+#plot(mod)
+X <- resid(mod)
+qqnorm(X)
+qqline(X, col = 'red')
+```
+The normal QQ plot shown above graphically analyze and compare two probability distributions by plotting their quantiles against each other. The bottom end of the Q-Q plot doesn't show a straight line. The distribution has a longer tail to its left which can be interpreted as a left-skewed model.
+Normality is one of the assumptions in the linear regression model. However, normality of errors at each value by looking at QQ plot, the deviations from the straight line are huge which doesn't indicate normal distribution. Since the model does not satisfy the assumption, it is considered as a weakness. 
+
 
 
 # Next Steps
