@@ -27,6 +27,7 @@ Through the analysis, We find a strong linear relationship between self rated me
 Together, these results suggest that no matter how much the income or working hours are, the most important factor that decides people's life satisfaction level is their mental and physical health. 
 
 ## Introduction
+*Here is where you should give insight into the setting and introduce the goal of the analysis. Here you can introduce ideas and basic concepts regarding the study setting and the potential model. Again, this is the introduction, so you should be explaining the importance of the work that is ahead and hopefully build some suspense for the reader. You can also highlight what will be included in the subsequent sections.*
 
 There are many factors that determines one's well being and satisfaction of life. It could be health condition, economic status, relationships, religion, or any other element one would value or prioritize.   
 Particularly, in these uncertain and unprecedented times caused by the COVID-19 pandemic, many people across the wrold are feeling more stressed due to the changes that the pandemic has brought into their lives and those concerns negatively influence their own well being.
@@ -37,6 +38,7 @@ To be more specific, in the following sections, we will use statistical methods 
 This process includes cleaning the given data into a simpler, but efficient version, linear regression modelling, graphical visualizations and interpretations of the outputs.
 
 ## Data
+*Introduce the data, explain why it was selected. Make sure to comment on important features and highlight any potential drawbacks to the data.*
 
 The data set we chose for this assignment contains responses of the General Social Survey conducted in 2017. The contents of the survey include some characteristics of diverse families in Canada, their socio-economic status, as well as other subjective information such as the respondent's life satisfaction and health conditions. 
 
