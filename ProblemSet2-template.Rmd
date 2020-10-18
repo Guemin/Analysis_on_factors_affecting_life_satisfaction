@@ -217,8 +217,11 @@ The goal of this process is to find some factors that affect one's satisfaction 
 Graphical visualization of positive correlation of the mental health and life satisfaction score:
 
 ```{r echo = F, warning = F, message = F, fig.width=12, fig.height=10.5}
-coefs<- coef(lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data))
-plot1<-life_satisfaction_data %>%
+
+#Create boxplots of the relationship between four factors(self_rated_mental_health, work_hours, self_rated_health, family_income) and the response variable(satisfaction_score).
+
+coefs<- coef(lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data)) 
+plot1<-life_satisfaction_data %>% 
   ggplot(aes(x = as.factor(self_rated_mental_health), y = (satisfaction_score))) + geom_boxplot() +
   geom_abline(intercept = coefs[1], slope = coefs[2], color = "red") + 
   ggtitle("Figure 1. Boxplot of Satisfaction score vs. Self rated Mental health") +
@@ -245,7 +248,7 @@ plot4 <- life_satisfaction_data %>%
   xlab("Family Income") + 
   ylab("Satisfaction Score") + scale_x_discrete(labels = c("$125,000 and more" = "125,000", "$100,000 to $ 124,999" = "112,499.50", "$75,000 to $99,999" = "87,499.50", "$50,000 to $74,999" = "62,499.50", "$25,000 to $49,999" = "37,499.50", "Less than $25,000" = "12,500"))
 
-  
+#Put boxplots in one place  
 grid.arrange(grobs = list(plot1, plot2, plot3, plot4), ncol = 2, nrow = 2)   
 
 ```
