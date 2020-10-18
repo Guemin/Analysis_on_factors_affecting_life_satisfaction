@@ -16,17 +16,13 @@ data <- read_csv("gss.csv")
 
 # Analysis on key factors affecting life satisfaction
 
-<!-- ### Woolim Kim, Yena Joo, Guemin Kim -->
-<!-- ### Oct 19, 2020 -->
 
 ## Abstract
-*Here is where you give a brief (one paragraph overview of your entire paper). This should include some background/introduction, some methodology, results and conclusions.*
 
 We use the 2017 General Social Survey(GSS) data to study the response of people in Canada's life satisfactions to multiple factors. The target population includes all non-institutionalized persons 15 years of age and older, living in the 10 provinces of Canada. The frame population is everyone who is registered combining both landline and cellular with Statistics Canada’s address registers, and the sampled population is whoever is reached via telephone. The target population was divided into 27 strata by geographic areas, and simple random sampling without replacement of records was performed in each stratum (which means, from each stratum/group, everyone has an equal probability of being chosen). The objective of the analysis is to find and analyze some potential factors that affect life satisfaction, and to observe the most significant factor among them. Through the analysis, We find a strong linear relationship between self rated mental health and life satisfaction rate. People who rate themselves as "mentally healthy" are relatively more satisfied with their lives. The analysis also shows a linear relationship between physical health and life satisfaction. On the other hand, there is no overall effects of hours worked on life satisfaction level. 
 Together, these results suggest that no matter how much the income or working hours are, the most important factor that decides people's life satisfaction level is their mental and physical health. 
 
 ## Introduction
-*Here is where you should give insight into the setting and introduce the goal of the analysis. Here you can introduce ideas and basic concepts regarding the study setting and the potential model. Again, this is the introduction, so you should be explaining the importance of the work that is ahead and hopefully build some suspense for the reader. You can also highlight what will be included in the subsequent sections.*
 
 There are many factors that determine one's well being and satisfaction of life. It could be health condition, economic status, relationships, religion, or any other element one would value or prioritize.   
 Particularly, in these uncertain and unprecedented times caused by the COVID-19 pandemic, many people across the world are feeling more stressed due to the changes that the pandemic has brought into their lives and those concerns negatively influence their own well being.
@@ -37,7 +33,6 @@ To be more specific, in the following sections, we will use statistical methods 
 This process includes cleaning the given data into a simpler, but efficient version, linear regression modelling, graphical visualizations and interpretations of the outputs.
 
 ## Data
-*Introduce the data, explain why it was selected. Make sure to comment on important features and highlight any potential drawbacks to the data.*
 
 The data set we chose for this assignment contains responses of the General Social Survey conducted in 2017. The contents of the survey include some characteristics of diverse families in Canada, their socio-economic status, as well as other subjective information such as the respondent's life satisfaction and health conditions. 
 
@@ -149,10 +144,8 @@ In other words, we are going to find out which of the potential factors (among p
 
 ## Results
 
-*Here you will include all results. This includes descriptive statistics, graphs, figures, tables, and model results. Please ensure that everything is well formatted and in a report style. You must also provide an explanation of the results in this section. You can overflow to an Appendix if needed. Please ensure that everything is well labelled. So if you have multiple histograms and plots, calling them Figure 1, 2, 3, etc. and referencing them as Figure 1, Figure 2, etc. in your report will be expected. The reader should not get lost in a sea of information. Make sure to have the results be clean, well formatted and digestible.*
-
 Here is the summary of the multiple linear regression model:  
-###summary1
+### summary1
 ```{r echo = F, warning = F, message = F}
 summary(satisfaction_lm)
 ```
@@ -200,7 +193,7 @@ third_R2 <- summary(third)$adj.r.squared
 ```
 
 This is the table with $R^2_{adjusted}$ values in each model, and the change in $R^2_{adjusted}$ as more variables are added:  
-## table1
+### table1
 ```{r echo = F, warning = F, message = F}
 tibble(Predictors = c("self_rated_health", "self_rated_health + self_rated_mental_health", "self_rated_health + self_rated_mental_health + family_income"), R_squared_adjusted = c(first_R2, second_R2, third_R2), Change = c(first_R2, second_R2 - first_R2, third_R2 - second_R2))
 ```
@@ -245,8 +238,6 @@ From Table 1 and Summary 1 in the result section, we find that physical health a
 
 # Weaknesses
 
-*Here we discuss weaknesses of the study, data, analysis, etc. You can also discuss areas for improvement.*
-
 Every statistic data study and analysis includes some biases and weaknesses. One of our weaknesses is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
 In order to overcome these problems, we replaced the ranges given in the categorical predictor variables with their midpoints.  
 This allowed us to perform quantitative analysis on our data; however, we still need to take potential biases into account when interpreting the result, because the true values for the categorical predictor variables could be far away from their newly assigned midpoints.  
@@ -272,8 +263,6 @@ Normality is one of the assumptions in the linear regression model. However, the
 
 
 # Next Steps
-
-*Here you discuss subsequent work to be done after this report. This can include next steps in terms of statistical analysis (perhaps there is a more efficient algorithm available, or perhaps there is a caveat in the data that would allow for some new technique). Future steps should also be specified in terms of the study setting (eg. including a follow-up survey on something, or a subsequent study that would complement the conclusions of your report).*
 
 For the next steps, we could do a follow up survey on the related topic (life satisfaction vs mental and physical health), and compare the data of the prior and post COVID-19. We could see how people's mental health changed due to COVID-19, the life satisfaction rate is expected to decrease in this case. Also, we could seek for interaction effects between few independent variables and do ANOVA tests to figure out if there is any independant variable that is dependent to another independant variable. (ie) how age and mental health rate could be interactive).
 
