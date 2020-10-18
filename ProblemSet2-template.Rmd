@@ -217,7 +217,7 @@ The goal of this process is to find some factors that affect one's satisfaction 
 
 Graphical visualization of positive correlation of the mental health and life satisfaction score:
 
-```{r echo = F, warning = F, message = F, fig.width=12, fig.height=6.5}
+```{r echo = F, warning = F, message = F, fig.width=12, fig.height=10.5}
 coefs<- coef(lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data))
 plot1<-life_satisfaction_data %>%
   ggplot(aes(x = as.factor(self_rated_mental_health), y = (satisfaction_score))) + geom_boxplot() +
@@ -232,7 +232,20 @@ plot2<-life_satisfaction_data %>%
   ylab("Satisfaction Score") +
   xlab("Work Hours") + scale_x_discrete(labels = c("0 hour" = "0", "0.1 to 29.9 hours" = "0.1-29.9", "30.0 to 40.0 hours" = "30-40", "40.1 to 50.0 hours" = "40.1-50", "50.1 hours and more" = "50.1~"))
 
-grid.arrange(grobs = list(plot1, plot2), ncol = 2)   
+coefs2<- coef(lm(satisfaction_score ~ self_rated_health, data = life_satisfaction_data))
+plot3 <- life_satisfaction_data %>%
+  ggplot(aes(x = as.factor(self_rated_health), y = (satisfaction_score))) + geom_boxplot() +
+  geom_abline(intercept = coefs2[1], slope = coefs2[2], color = "red") + 
+  ggtitle("Figure 3. Boxplot of Satisfaction score vs. Self rated Health ") +
+  ylab("Satisfaction Score")
+
+plot4 <- life_satisfaction_data %>%
+  ggplot(aes(x = as.factor(family_income), y = (satisfaction_score))) + geom_boxplot() +
+  ggtitle("Figure 4. Boxplot of Satisfaction score vs. Family income ") +
+  ylab("Satisfaction Score") + scale_x_discrete(labels = c("$125,000 and more" = "125,000", "$100,000 to $ 124,999" = "112,499.50", "$75,000 to $99,999" = "87,499.50", "$50,000 to $74,999" = "62,499.50", "$25,000 to $49,999" = "37,499.50", "Less than $25,000" = "12,500"))
+
+  
+grid.arrange(grobs = list(plot1, plot2, plot3, plot4), ncol = 2, nrow = 2)   
 
 ```
   
@@ -240,7 +253,7 @@ In Figure 1, The boxplot has a positive linear relationship between the two vari
 
 Figure 2 shown above is the boxplot of satisfaction_score and work_hours. Work_hours variable includes 0 hour to 50 hours and more, which means that both unemployed and employed are included in this category. As it was mentioned previously, employed hours show no positive or negative relation with the satisfaction score signifying that there is no significant relationship with satisfaction score.
 
-From Table 1 and Summary 1 in the result section, we find that physical health also has a significant positive linear relationship (using estimates and p-value, and r-squared). so we find physical and mental health are the two major factors that affect life satisfaction. However there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using p-values and estimates). Hence, the result suggests that both physical and mental health are significant predictors. Between the two variables, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
+From Table 1 and Summary 1 in the result section, we find that physical health also has a significant positive linear relationship (using estimates and p-value, and r-squared). Which explains, that physical and mental health are the two major factors that affect life satisfaction. However there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using p-values and estimates). Hence, the result suggests that both physical and mental health are significant predictors. Between the two variables, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
 
 
 
