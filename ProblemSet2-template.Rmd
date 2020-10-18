@@ -236,7 +236,7 @@ grid.arrange(grobs = list(plot1, plot2), ncol = 2)
 
 ```
   
-In Figure 1, The boxplot has a positive linear relationship between the two variables(mental health and life satisfaction). It signifies that average of life satisfaction score increases as the self rated mental health increases.
+In Figure 1, The boxplot has a positive linear relationship between the two variables, mental health and life satisfaction. It signifies that average of life satisfaction score increases as the self rated mental health increases.
 
 Figure 2 shown above is the boxplot of satisfaction_score and work_hours. Work_hours variable includes 0 hour to 50 hours and more, which means that both unemployed and employed are included in this category. As it was mentioned previously, employed hours show no positive or negative relation with the satisfaction score signifying that there is no significant relationship with satisfaction score.
 
