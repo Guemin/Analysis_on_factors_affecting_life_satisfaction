@@ -28,8 +28,8 @@ Together, these results suggest that no matter how much the income or working ho
 ## Introduction
 *Here is where you should give insight into the setting and introduce the goal of the analysis. Here you can introduce ideas and basic concepts regarding the study setting and the potential model. Again, this is the introduction, so you should be explaining the importance of the work that is ahead and hopefully build some suspense for the reader. You can also highlight what will be included in the subsequent sections.*
 
-There are many factors that determines one's well being and satisfaction of life. It could be health condition, economic status, relationships, religion, or any other element one would value or prioritize.   
-Particularly, in these uncertain and unprecedented times caused by the COVID-19 pandemic, many people across the wrold are feeling more stressed due to the changes that the pandemic has brought into their lives and those concerns negatively influence their own well being.
+There are many factors that determine one's well being and satisfaction of life. It could be health condition, economic status, relationships, religion, or any other element one would value or prioritize.   
+Particularly, in these uncertain and unprecedented times caused by the COVID-19 pandemic, many people across the world are feeling more stressed due to the changes that the pandemic has brought into their lives and those concerns negatively influence their own well being.
 Therefore, as this ongoing COVID-19 crisis reminds us of the importance of well being, our group decided to investigate and determine some factors that influence one's well being and satisfaction of life.
 
 Throughout this report, we are going to determine and analyze some potential factors that affect one's life satisfaction, as well as to identify the most significant factor among them.  
