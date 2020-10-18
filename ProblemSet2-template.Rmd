@@ -23,7 +23,7 @@ _Code and data supporting this analysis is available at: https://github.com/Guem
 *- The abstract answers: what was done, what was found, and why this matters (all at a high level).*
 *- If your abstract is longer than four sentences then you need to think a lot about whether it is too long. It may be fine (there are always exceptions) but you should probably have a good reason.*
 
-We use the 2017 General Social Survey(GSS) data to study the response of life satisfactions of people in Canada to multiple factors. The objective of the analysis is to find and analyze some potential factors that affect life satisfaction, and to observe the most significant factor among them. __Linear model and r-squared method is used to determine the significant factors, and plots are drawn to show the linear trend or to exaplain some weakness of the analysis.__ Through the analysis, We find a strong linear relationship between self rated mental health and life satisfaction rate. Which means, people who rate themselves as "mentally healthy" are relatively more satisfied with their lives. The analysis also shows a linear relationship between physical health and life satisfaction. On the other hand, there is no overall effects of hours worked on life satisfaction level. 
+We use the 2017 General Social Survey(GSS) data to study the response of life satisfactions of people in Canada to multiple factors. The objective of the analysis is to find and analyze some potential factors that affect life satisfaction, and to observe the most significant factor among them. Linear model and adjusted $R^2$^[*adjusted $R^2$ is explained in "Model" section] are used to determine the significant factors, and plots are drawn to show the linear trend or to exaplain some weakness of the analysis. Through the analysis, We find a positive linear relationships between two independent variables self_rated_mental_health, self_rated_health and a dependent variable life_satisfaction rate, which means people who rate themselves as "mentally and/or physically healthy" are relatively more satisfied with their lives. On the other hand, there is no overall effects of hours worked on life satisfaction level. 
 Together, these results suggest that no matter how much the income or working hours are, the most important factor that decides people's life satisfaction level is their mental health. 
 
 ## Introduction
@@ -209,7 +209,7 @@ As it is shown in the table, there is a greatest increase in $R^2_{adjusted}$ wh
 On the other hand, the change in $R^2_{adjusted}$ is relatively small when family_income is added to the regression model compared to the previous changes, and therefore, we know that the family income does not contribute significantly in explaining the variation in the satisfaction score.
 
 ## Discussion
-*Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).*
+*Explain where the dataset came from, the bias that may exist, and what you did to adjust for that.*
 
 
 The goal of this process is to find some factors that affect one's satisfaction on life. 
@@ -242,11 +242,11 @@ plot3 <- life_satisfaction_data %>%
   xlab("Self Rated Health") + 
   ylab("Satisfaction Score")
 
-plot4 <- life_satisfaction_data %>%
+plot4 <- model_data %>%
   ggplot(aes(x = as.factor(family_income), y = (satisfaction_score))) + geom_boxplot() +
   ggtitle("Figure 4. Boxplot of Satisfaction score vs. Family income ") +
   xlab("Family Income") + 
-  ylab("Satisfaction Score") + scale_x_discrete(labels = c("$125,000 and more" = "125,000", "$100,000 to $ 124,999" = "112,499.50", "$75,000 to $99,999" = "87,499.50", "$50,000 to $74,999" = "62,499.50", "$25,000 to $49,999" = "37,499.50", "Less than $25,000" = "12,500"))
+  ylab("Satisfaction Score")
 
 #Put boxplots in one place  
 grid.arrange(grobs = list(plot1, plot2, plot3, plot4), ncol = 2, nrow = 2)   
@@ -256,6 +256,10 @@ grid.arrange(grobs = list(plot1, plot2, plot3, plot4), ncol = 2, nrow = 2)
 In Figure 1, The boxplot has a positive linear relationship between the two variables, mental health and life satisfaction. It signifies that average of life satisfaction score increases as the self rated mental health increases.
 
 Figure 2 shown above is the boxplot of satisfaction_score and work_hours. Work_hours variable includes 0 hour to 50 hours and more, which means that both unemployed and employed are included in this category. As it was mentioned previously, employed hours show no positive or negative relation with the satisfaction score signifying that there is no significant relationship with satisfaction score.
+
+Figure 3 is a boxplot of satisfaction_score and self_rated_health, and it shows a positive linear relationship between the two variables. The slope of the red line shows weaker change in 1 unit of health rate than what shows in figure 1, which is mentioned previously that self_rated_health is not as well related as self_rated_mental_health.
+
+Figure 4 shows a consistent median of satisfaction score over all income ranges, which shows family_income and satisfaction_score does not have a significant linear relationship. The boxplot suggests that family income does not contribute much in explaining the variation in satisfaction score. 
 
 From Table 1 and Summary 1 in the result section, we find that physical health also has a significant positive linear relationship (using estimates and p-value, and r-squared). Which explains, that physical and mental health are the two major factors that affect life satisfaction. However there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using p-values and estimates). Hence, the result suggests that both physical and mental health are significant predictors. Between the two variables, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
 
