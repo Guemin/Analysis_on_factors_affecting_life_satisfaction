@@ -218,15 +218,18 @@ The goal of this process is to find what are some factors that affects and has b
 Graphical visualization of positive correlation of the mental health and life satisfaction score:
 
 ```{r echo = F, warning = F, message = F}
-
+coefs<- coef(lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data))
 life_satisfaction_data %>%
   ggplot(aes(x = as.factor(self_rated_mental_health), y = (satisfaction_score))) + geom_boxplot() +
+  geom_abline(intercept = coefs[1], slope = coefs[2], color = "red") + 
   ggtitle("Figure 1. Boxplot of Satisfaction score Vs. Self Rated Mental Health") +
   ylab("Satisfaction Score") +
   xlab("Self Rated Mental Health")
 
+coefs_2 <- coef(lm(satisfaction_score ~ as.factor(work_hours), data = life_satisfaction_data))
 life_satisfaction_data %>%
   ggplot(aes(x = as.factor(work_hours), y = (satisfaction_score))) + geom_boxplot() +
+  geom_abline(intercept = coefs_2[1], slope = coefs_2[2], color = "red") + 
   ggtitle("Figure 2. Boxplot of Satisfaction score Vs. Work hours ") +
   ylab("Satisfaction Score") +
   xlab("Work Hours")
@@ -249,7 +252,7 @@ From Table 1 and Summary 1 in the result section, we find that physical health a
 *Woolim
 - Every statistic data study and analysis includes some bias and weaknesses. One of our weakness is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
 
-- there might be omitted variable bias? 
+- there might be omitted variable bias? We need the omitted variable to be correlated with the dependent variabel 
 - but the normal QQ plot shows some downside of the distribution(?)
 ```{r}
 mod<- lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data)
