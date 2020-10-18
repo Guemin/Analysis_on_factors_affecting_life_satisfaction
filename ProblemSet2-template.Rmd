@@ -19,9 +19,6 @@ data <- read_csv("gss.csv")
 *Code and data supporting this analysis is available at: https://github.com/Guemin/Problem_Set_2.git *
 
 ## Abstract
-*- An abstract is included and appropriately pitched to a general audience.*
-*- The abstract answers: what was done, what was found, and why this matters (all at a high level).*
-*- If your abstract is longer than four sentences then you need to think a lot about whether it is too long. It may be fine (there are always exceptions) but you should probably have a good reason.*
 
 We use the 2017 General Social Survey(GSS) data to study the response of life satisfactions of people in Canada to multiple factors. The objective of the analysis is to find and analyze some potential factors that affect life satisfaction, and to observe the most significant factor among them. Linear model and adjusted $R^2$^[*adjusted $R^2$ is explained in "Model" section] are used to determine the significant factors, and plots are drawn to show the linear trend or to exaplain some weakness of the analysis. Through the analysis, We find a positive linear relationships between two independent variables self_rated_mental_health, self_rated_health and a dependent variable life_satisfaction rate, which means people who rate themselves as "mentally and/or physically healthy" are relatively more satisfied with their lives. On the other hand, there is no overall effects of hours worked on life satisfaction level. 
 Together, these results suggest that no matter how much the income or working hours are, the most important factor that decides people's life satisfaction level is their mental health. 
@@ -209,7 +206,6 @@ As it is shown in the table, there is a greatest increase in $R^2_{adjusted}$ wh
 On the other hand, the change in $R^2_{adjusted}$ is relatively small when family_income is added to the regression model compared to the previous changes, and therefore, we know that the family income does not contribute significantly in explaining the variation in the satisfaction score.
 
 ## Discussion
-*Explain where the dataset came from, the bias that may exist, and what you did to adjust for that.*
 
 
 The goal of this process is to find some factors that affect one's satisfaction on life. Data cleaning for the data given from 2017 General Social Survey(GSS) data set is done in the "Data" part, but there may have some bias since many responses are not available. Therefore, We focused more on the variables with less NA responses to do the anlaysis as accurate as possible. 
