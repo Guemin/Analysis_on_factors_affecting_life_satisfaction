@@ -23,10 +23,7 @@ data <- read_csv("gss.csv")
 *- The abstract answers: what was done, what was found, and why this matters (all at a high level).*
 *- If your abstract is longer than four sentences then you need to think a lot about whether it is too long. It may be fine (there are always exceptions) but you should probably have a good reason.*
 
-We use the 2017 General Social Survey(GSS) data^[* The target population includes all non-institutionalized persons 15 years of age and older, living in the 10 provinces of Canada.  
-\    \    \ * The frame population is everyone who is registered combining both landline and cellular with Statistics  
-\    \    \ Canada’s address registers.   
-\    \    \ * The sampled population is whoever is reached via telephone.] to study the response of people in Canada's life satisfactions to multiple factors. The target population was divided into 27 strata by geographic areas, and simple random sampling without replacement of records was performed in each stratum (which means, from each stratum/group, everyone has an equal probability of being chosen). The objective of the analysis is to find and analyze some potential factors that affect life satisfaction, and to observe the most significant factor among them. __Linear model and r-squared method is used to determine the significant factors, and plots are drawn to show the linear trend or to exaplain some weakness of the analysis.__ Through the analysis, We find a strong linear relationship between self rated mental health and life satisfaction rate. Which means, people who rate themselves as "mentally healthy" are relatively more satisfied with their lives. The analysis also shows a linear relationship between physical health and life satisfaction. On the other hand, there is no overall effects of hours worked on life satisfaction level. 
+We use the 2017 General Social Survey(GSS) data to study the response of life satisfactions of people in Canada to multiple factors. The objective of the analysis is to find and analyze some potential factors that affect life satisfaction, and to observe the most significant factor among them. __Linear model and r-squared method is used to determine the significant factors, and plots are drawn to show the linear trend or to exaplain some weakness of the analysis.__ Through the analysis, We find a strong linear relationship between self rated mental health and life satisfaction rate. Which means, people who rate themselves as "mentally healthy" are relatively more satisfied with their lives. The analysis also shows a linear relationship between physical health and life satisfaction. On the other hand, there is no overall effects of hours worked on life satisfaction level. 
 Together, these results suggest that no matter how much the income or working hours are, the most important factor that decides people's life satisfaction level is their mental and physical health. 
 
 ## Introduction
@@ -42,6 +39,8 @@ This process includes cleaning the given data into a simpler, but efficient vers
 ## Data
 
 The data set we chose for this assignment contains responses of the General Social Survey conducted in 2017. The contents of the survey include some characteristics of diverse families in Canada, their socio-economic status, as well as other subjective information such as the respondent's life satisfaction and health conditions. 
+
+The target population in the GSS data includes all non-institutionalized persons 15 years of age and older, living in the 10 provinces of Canada. The frame population is everyone who is registered combining both landline and cellular with Statistics Canada’s address registers, and the sampled population is whoever is reached via telephone. The target population was divided into 27 strata by geographic areas, and simple random sampling without replacement of records was performed in each stratum (which means, from each stratum/group, everyone has an equal probability of being chosen).
 
 Since we want to identify some key factors affecting one's life satisfaction as mentioned previously, the focus of our analysis will be "Health and subjective well-being". 
 
