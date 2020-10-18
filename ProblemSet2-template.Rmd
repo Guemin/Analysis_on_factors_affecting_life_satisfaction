@@ -16,7 +16,7 @@ data <- read_csv("gss.csv")
 ```
 
 # Analysis on key factors affecting life satisfaction
-
+_Code and data supporting this analysis is available at: https://github.com/Guemin/Problem_Set_2.git_
 
 ## Abstract
 *- An abstract is included and appropriately pitched to a general audience.*
@@ -24,7 +24,7 @@ data <- read_csv("gss.csv")
 *- If your abstract is longer than four sentences then you need to think a lot about whether it is too long. It may be fine (there are always exceptions) but you should probably have a good reason.*
 
 We use the 2017 General Social Survey(GSS) data to study the response of life satisfactions of people in Canada to multiple factors. The objective of the analysis is to find and analyze some potential factors that affect life satisfaction, and to observe the most significant factor among them. __Linear model and r-squared method is used to determine the significant factors, and plots are drawn to show the linear trend or to exaplain some weakness of the analysis.__ Through the analysis, We find a strong linear relationship between self rated mental health and life satisfaction rate. Which means, people who rate themselves as "mentally healthy" are relatively more satisfied with their lives. The analysis also shows a linear relationship between physical health and life satisfaction. On the other hand, there is no overall effects of hours worked on life satisfaction level. 
-Together, these results suggest that no matter how much the income or working hours are, the most important factor that decides people's life satisfaction level is their mental and physical health. 
+Together, these results suggest that no matter how much the income or working hours are, the most important factor that decides people's life satisfaction level is their mental health. 
 
 ## Introduction
 
