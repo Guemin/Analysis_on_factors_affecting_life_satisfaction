@@ -16,7 +16,7 @@ data <- read_csv("gss.csv")
 ```
 
 # Analysis on key factors affecting life satisfaction
-_Code and data supporting this analysis is available at: https://github.com/Guemin/Problem_Set_2.git_
+*Code and data supporting this analysis is available at: https://github.com/Guemin/Problem_Set_2.git *
 
 ## Abstract
 *- An abstract is included and appropriately pitched to a general audience.*
