@@ -30,7 +30,7 @@ Together, these results suggest that no matter how much the income or working ho
 
 There are many factors that determine one's well being and satisfaction of life. It could be health condition, economic status, relationships, religion, or any other element one would value or prioritize.   
 Particularly, in these uncertain and unprecedented times caused by the COVID-19 pandemic, many people across the world are feeling more stressed due to the changes that the pandemic has brought into their lives and those concerns negatively influence their own well being.
-Therefore, as this ongoing COVID-19 crisis reminds us of the importance of well being, our group decided to investigate and determine some factors that influence one's well being and satisfaction of life.
+Therefore, as the ongoing COVID-19 crisis reminds us of the importance of well being, our group decided to investigate and determine some factors that influence one's well being and satisfaction of life.
 
 Throughout this report, we are going to determine and analyze some potential factors that affect one's life satisfaction, as well as to identify the most significant factor among them.  
 To be more specific, in the following sections, we will use statistical methods to build a regression model of life satisfaction score by potential factors, and interpret the regression output to find relationships between the life satisfaction score and potential factors.  
