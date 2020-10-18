@@ -148,7 +148,8 @@ In other words, we are going to find out which of the potential factors (among p
 ## Results
 
 Here is the summary of the multiple linear regression model:  
-__summary1__
+
+__Summary 1:__
 ```{r echo = F, warning = F, message = F}
 summary(satisfaction_lm)
 ```
@@ -196,7 +197,8 @@ third_R2 <- summary(third)$adj.r.squared
 ```
 
 This is the table with $R^2_{adjusted}$ values in each model, and the change in $R^2_{adjusted}$ as more variables are added:  
-__table1__
+
+__Table 1:__
 ```{r echo = F, warning = F, message = F}
 tibble(Predictors = c("self_rated_health", "self_rated_health + self_rated_mental_health", "self_rated_health + self_rated_mental_health + family_income"), R_squared_adjusted = c(first_R2, second_R2, third_R2), Change = c(first_R2, second_R2 - first_R2, third_R2 - second_R2))
 ```
