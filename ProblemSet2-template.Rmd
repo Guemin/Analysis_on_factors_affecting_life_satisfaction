@@ -213,7 +213,7 @@ On the other hand, the change in $R^2_{adjusted}$ is relatively small when famil
 *Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).*
 
 
-The goal of this process is to find what are some factors that affects and has big influence on person's satisfaction of their lives. 
+The goal of this process is to find some factors that affect one's satisfaction on life. 
 
 Graphical visualization of positive correlation of the mental health and life satisfaction score:
 
@@ -249,21 +249,24 @@ From Table 1 and Summary 1 in the result section, we find that physical health a
 
 *Here we discuss weaknesses of the study, data, analysis, etc. You can also discuss areas for improvement.*
 
-*Woolim
-- Every statistic data study and analysis includes some bias and weaknesses. One of our weakness is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
+Every statistic data study and analysis includes some biases and weaknesses. One of our weaknesses is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
+In order to overcome these problems, we replaced the ranges given in the categorical predictor variables with their midpoints.  
+This allowed us to perform quantitative analysis on our data; however, we still need to take potential biases into account when interpreting the result, because the true values for the categorical predictor variables could be far away from their newly assigned midpoints.
+  
 
-- there might be omitted variable bias? We need the omitted variable to be correlated with the dependent variable, and correlated with the explanatory variables included in the model. There might be an important variable that would affect the model, but it is hard to figure out since the variable might be missing in our data set, or might be impossible to measure. 
-
-Another weakness of the analysis is shown in the graph below. 
-```{r}
+```{r echo = FALSE, message= FALSE, warning= FALSE}
+# create a linear model of satisfaction score by mental health rating
 mod<- lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data)
-#plot(mod)
+
+# create a normal qqplot of the residuals in our model
 X <- resid(mod)
-qqnorm(X)
+qqnorm(X, main = "Figure 2. Normal Q-Q Plot")
 qqline(X, col = 'red')
 ```
-The normal QQ plot shown above graphically analyze and compare two probability distributions by plotting their quantiles against each other. The bottom end of the Q-Q plot doesn't show a straight line. The distribution has a longer tail to its left which can be interpreted as a left-skewed model.
-Normality is one of the assumptions in the linear regression model. However, normality of errors at each value by looking at QQ plot, the deviations from the straight line are huge which doesn't indicate normal distribution. Since the model does not satisfy the assumption, it is considered as a weakness. 
+The normal QQ plot shown above graphically analyze the residuals in our regression model.  
+The x-axis represents the quantiles for the standard normal distribution and the y-axis are the data points for the residuals.  
+As we can see in the plot, the data points do not trend the theoretical line, and the points at each tail of the data seem to fall off the line, revealing that the distribution of residuals may have long tails.  
+Normality is one of the assumptions in the linear regression model. However, the normal QQ plot above suggests that our model does not satisfy the normality assumption on the error terms. Therefore, we need take into account that the result drawn from the regression model could be misleading or biased.
 
 
 # Next Steps
