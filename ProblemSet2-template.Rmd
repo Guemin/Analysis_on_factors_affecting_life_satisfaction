@@ -237,11 +237,13 @@ plot3 <- life_satisfaction_data %>%
   ggplot(aes(x = as.factor(self_rated_health), y = (satisfaction_score))) + geom_boxplot() +
   geom_abline(intercept = coefs2[1], slope = coefs2[2], color = "red") + 
   ggtitle("Figure 3. Boxplot of Satisfaction score vs. Self rated Health ") +
+  xlab("Self Rated Health") + 
   ylab("Satisfaction Score")
 
 plot4 <- life_satisfaction_data %>%
   ggplot(aes(x = as.factor(family_income), y = (satisfaction_score))) + geom_boxplot() +
   ggtitle("Figure 4. Boxplot of Satisfaction score vs. Family income ") +
+  xlab("Family Income") + 
   ylab("Satisfaction Score") + scale_x_discrete(labels = c("$125,000 and more" = "125,000", "$100,000 to $ 124,999" = "112,499.50", "$75,000 to $99,999" = "87,499.50", "$50,000 to $74,999" = "62,499.50", "$25,000 to $49,999" = "37,499.50", "Less than $25,000" = "12,500"))
 
   
