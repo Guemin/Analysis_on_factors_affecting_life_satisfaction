@@ -278,13 +278,13 @@ mod<- lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction
 
 # create a normal qqplot of the residuals in our model
 X <- resid(mod)
-qqnorm(X, main = "Figure 2. Normal Q-Q Plot")
+qqnorm(X, main = "Figure 5. Normal Q-Q Plot")
 qqline(X, col = 'red')
 ```
 The normal QQ plot shown above graphically analyze the residuals in our regression model.  
 The x-axis represents the quantiles for the standard normal distribution and the y-axis are the data points for the residuals.  
 As we can see in the plot, the data points do not trend the theoretical line, and the points at each tail of the data seem to fall off the line, revealing that the distribution of residuals may have long tails.  
-Normality is one of the assumptions in the linear regression model. However, the normal QQ plot above suggests that our model does not satisfy the normality assumption on the error terms. Therefore, we need take into account that the result drawn from the regression model could be misleading or biased.
+Normality is one of the assumptions in the linear regression model. However, the normal QQ plot above suggests that our model does not satisfy the normality assumption on the error terms. Therefore, we need to take into account that the result drawn from the regression model could be misleading or biased.
 
 
 # Next Steps
