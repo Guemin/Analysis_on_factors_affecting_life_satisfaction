@@ -279,9 +279,7 @@ Normality is one of the assumptions in the linear regression model. However, the
 
 For the next steps, we could do a follow up survey on the related topic (life satisfaction vs mental and physical health), and compare the data of the prior and post COVID-19. We could see how people's mental health changed due to COVID-19, the life satisfaction rate is expected to decrease in this case. Also, we could seek for interaction effects between few independent variables and do ANOVA tests to figure out if there is any independant variable that is dependent to another independant variable. (ie) how age and mental health rate could be interactive).
 
-- look for other factors that affect life satisfaction rate. (maybe focus on households, family, geographical data, etc)
-
-- 
+Furthermore, since we have found in the previous section that the normality assumption was violated in our model, we could fit other models that satisfy all of the required assumptions on linear regression model, and find the best model among them.
 
 
 ## References
