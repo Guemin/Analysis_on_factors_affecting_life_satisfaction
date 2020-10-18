@@ -315,7 +315,7 @@ Frost, J., Adusei, C., Peeyush, Siyabonga, Sreeja, Narayanan, J., . . . Sachin. 
 4. QQ normal plot code:
 Sheather, S. J. (2010). A Modern approach to regression with R. New York: Springer.
 
-5. Plot on one page:
+5. Plotting multiple plots on one page:
 R Draw Multiple ggplot2 Plots Side-by-Side (Example): Plot on One Page. (2020, September 30). Retrieved October 17, 2020, from https://statisticsglobe.com/draw-multiple-ggplot-plots-side-by-side
 
 
