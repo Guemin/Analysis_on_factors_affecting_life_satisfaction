@@ -281,6 +281,10 @@ https://www.tellingstorieswithdata.com/01-03-r_essentials.html
 3. Identifying the most significant predictor: 
 Frost, J., Adusei, C., Peeyush, Siyabonga, Sreeja, Narayanan, J., . . . Sachin. (2019, June 13). Identifying the Most Important Independent Variables in Regression Models. Retrieved October 16, 2020, from https://statisticsbyjim.com/regression/identifying-important-independent-variables/
 
+4. QQ normal plor code:
+Sheather, S. J. (2010). A Modern approach to regression with R. New York: Springer.
+
+
 
 
 
