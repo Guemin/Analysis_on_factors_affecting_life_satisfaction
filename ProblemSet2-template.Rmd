@@ -226,20 +226,18 @@ life_satisfaction_data %>%
   ylab("Satisfaction Score") +
   xlab("Self Rated Mental Health")
 
-coefs_2 <- coef(lm(satisfaction_score ~ as.factor(work_hours), data = life_satisfaction_data))
 life_satisfaction_data %>%
   ggplot(aes(x = as.factor(work_hours), y = (satisfaction_score))) + geom_boxplot() +
-  geom_abline(intercept = coefs_2[1], slope = coefs_2[2], color = "red") + 
   ggtitle("Figure 2. Boxplot of Satisfaction score Vs. Work hours ") +
   ylab("Satisfaction Score") +
   xlab("Work Hours")
 
 ```
-In Figure 1, The boxplot has a positive linear relationship between the two variables(mental health and life satisfaction). It signifies that average of life satisfaction score increases as the self rated mental health increases. 
+In Figure 1, The boxplot has a positive linear relationship between the two variables(mental health and life satisfaction). It signifies that average of life satisfaction score increases as the self rated mental health increases.
 
-Figure 2 shown above is the boxplot of satisfaction_score and work_hours. the work_hours variable includes 0 hour to 50 hours and more, which means that both unemployed and employed are included in this category. As it was mentioned previously, employed hours show no positive or negative relation with the satisfaction score signifying that there is no significance relationship with satisfaction score.
+Figure 2 shown above is the boxplot of satisfaction_score and work_hours. the work_hours variable includes 0 hour to 50 hours and more, which means that both unemployed and employed are included in this category. As it was mentioned previously, employed hours show no positive or negative relation with the satisfaction score signifying that there is no significant relationship with satisfaction score.
 
-From Table 1 and Summary 1 in the result section, we find that physical health also has a significant positive linear relationship (using estimates and p-value, and r-squared). so we find physical and mental health are two major factors that affect life satisfaction, however there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using p-values and estimates). Hence, the result suggests that both physical and mental health are significant predictors, however, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
+From Table 1 and Summary 1 in the result section, we find that physical health also has a significant positive linear relationship (using estimates and p-value, and r-squared). so we find physical and mental health are the two major factors that affect life satisfaction. However there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using p-values and estimates). Hence, the result suggests that both physical and mental health are significant predictors. Between the two variables, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
 
 
 
