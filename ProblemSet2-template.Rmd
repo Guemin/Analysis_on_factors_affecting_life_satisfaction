@@ -252,8 +252,9 @@ From Table 1 and Summary 1 in the result section, we find that physical health a
 *Woolim
 - Every statistic data study and analysis includes some bias and weaknesses. One of our weakness is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
 
-- there might be omitted variable bias? We need the omitted variable to be correlated with the dependent variabel 
-- but the normal QQ plot shows some downside of the distribution(?)
+- there might be omitted variable bias? We need the omitted variable to be correlated with the dependent variable, and correlated with the explanatory variables included in the model. There might be an important variable that would affect the model, but it is hard to figure out since the variable might be missing in our data set, or might be impossible to measure. 
+
+Another weakness of the analysis is shown in the graph below. 
 ```{r}
 mod<- lm(satisfaction_score ~ self_rated_mental_health, data = life_satisfaction_data)
 #plot(mod)
