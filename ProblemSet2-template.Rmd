@@ -212,9 +212,9 @@ On the other hand, the change in $R^2_{adjusted}$ is relatively small when famil
 *Explain where the dataset came from, the bias that may exist, and what you did to adjust for that.*
 
 
-The goal of this process is to find some factors that affect one's satisfaction on life. 
+The goal of this process is to find some factors that affect one's satisfaction on life. Data cleaning for the data given from 2017 General Social Survey(GSS) data set is done in the "Data" part, but there may have some bias since many responses are not available. Therefore, We focused more on the variables with less NA responses to do the anlaysis as accurate as possible. 
 
-Graphical visualization of positive correlation of the mental health and life satisfaction score:
+Here is some graphical visualization of positive correlation of the explanatory variables used in the regression models and life satisfaction score:
 
 ```{r echo = F, warning = F, message = F, fig.width=12, fig.height=10.5}
 
