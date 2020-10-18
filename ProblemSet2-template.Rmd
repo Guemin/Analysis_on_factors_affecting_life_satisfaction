@@ -237,7 +237,7 @@ life_satisfaction_data %>%
 ```
 In Figure 1, The boxplot has a positive linear relationship between the two variables(mental health and life satisfaction). It signifies that average of life satisfaction score increases as the self rated mental health increases. 
 
-Figure 2 shown above is the boxplot of satisfaction score and work hour. the work hour variable includes 0 hour to 50 hours and more, which means that both unemployed and employed are included in this category. As it was mentioned previously, employed hours show no positive or negative relation with the satisfaction score signifying that there is no significance relationship with satisfaction score.
+Figure 2 shown above is the boxplot of satisfaction_score and work_hours. the work_hours variable includes 0 hour to 50 hours and more, which means that both unemployed and employed are included in this category. As it was mentioned previously, employed hours show no positive or negative relation with the satisfaction score signifying that there is no significance relationship with satisfaction score.
 
 From Table 1 and Summary 1 in the result section, we find that physical health also has a significant positive linear relationship (using estimates and p-value, and r-squared). so we find physical and mental health are two major factors that affect life satisfaction, however there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using p-values and estimates). Hence, the result suggests that both physical and mental health are significant predictors, however, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
 
@@ -251,7 +251,11 @@ From Table 1 and Summary 1 in the result section, we find that physical health a
 
 Every statistic data study and analysis includes some biases and weaknesses. One of our weaknesses is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
 In order to overcome these problems, we replaced the ranges given in the categorical predictor variables with their midpoints.  
-This allowed us to perform quantitative analysis on our data; however, we still need to take potential biases into account when interpreting the result, because the true values for the categorical predictor variables could be far away from their newly assigned midpoints.
+This allowed us to perform quantitative analysis on our data; however, we still need to take potential biases into account when interpreting the result, because the true values for the categorical predictor variables could be far away from their newly assigned midpoints.  
+
+Another possible weakness is that we do not know if there is any omitted variable bias. Omitted variable should be correlated with the dependent variable, and correlated with the explanatory variables included in the model. There might be an important variable that would affect the model, but it is hard to figure out since the variable might be missing in our data set, or might be impossible to measure.
+
+Also, the units of self_rated_health and self_rated_mental_health are based on different standards of the participants and might not be a reliable measurement to analyze. There might be some errors in the measurement of the variables since it is not a measurable unit.
   
 
 ```{r echo = FALSE, message= FALSE, warning= FALSE}
