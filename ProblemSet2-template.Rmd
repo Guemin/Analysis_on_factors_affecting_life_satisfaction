@@ -82,9 +82,7 @@ These are the first six observations in our newly created data:
 ```{r echo = F, warning = F, message = F}
 # preview of what our newly created data looks like
 kable(head(life_satisfaction_data), "latex", booktabs = T, align = "c") %>%
-#col.names = linebreak(c("ID", "satisfaction_score","self_rated_health", "self_rated_\n mental_health", "family_income", "work_hours"))) 
 column_spec(3:3, width = "2.58cm")
-#row_spec()
 ```
 
 Our data contains 6 variables: ID, satisfaction_score, self_rated_health, self_rated_mental_health, family_income, and work_hours.  
