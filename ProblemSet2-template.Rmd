@@ -48,7 +48,7 @@ The reason for choosing the 2017 GSS is because it is the most recent^[As it is 
 As a result, every survey conducted so far contain the responses related to the questions asking for the respondents' well being, and the 2017 GSS is the most recent survey with such responses.] survey that includes  the "Health and subjective well being" topic.
 
 One of the characteristics of our data set is that the majority of the variables are categorical. However, some drawbacks of using such data is that there is a limit to the kinds of statistical analysis that we can use with our data, as well as numerical operations or quantitative analysis cannot be performed on such data.  
-Not only this, but there are number of columns in our data set with too many NAs in them, and this indicates that many of observations in certain variables are not available or missing. If we want to use such variables in our analysis, we would first need to exclude those 'NA' observations from our data; however, any results drawn from the data could possibly be biased or misleading due to the small number of observations available. 
+Not only this, but there are numbers of columns in our data set with too many NAs in them, and this indicates that many of the observations in certain variables are not available or missing. If we want to use such variables in our analysis, we would first need to exclude those 'NA' observations from our data; however, any results drawn from the data could possibly be biased or misleading due to the small number of observations available. 
 
 Since the original data set contains too many variables that are not necessary, we are going to clean the data set prior to analysis by removing them. Also, we are going to look for non-responses in our variables of interest and simply remove them from our data; removing the non-responses would not influence the overall performance of the regression model since we still have 13007 observations left in the new data.
 
@@ -93,7 +93,7 @@ Detailed descriptions on variables are provided in the footnote^[* satisfaction_
 
 Since we want to observe how the life satisfaction score is related to potential factors such as health or financial conditions, the response variable of our analysis will be satisfaction_score and the predictors will be the potential factors: self_rated_health, self_rated_mental_health, family_income, and work_hours.  
 
-(Note: the scatter plot of the raw data is eliminated since the explanatory variables are categorical variables which does not show a good visualization of the data)
+(Note: the scatter plot of the raw data is eliminated since the explanatory variables are categorical, which do not show a good visualization of the data)
 
 \newpage
 ## Model
