@@ -314,7 +314,7 @@ Figure 3 is a boxplot of satisfaction_score and self_rated_health, and it shows 
 
 Figure 4 shows a consistent median of satisfaction score over all income ranges, which shows family_income and satisfaction_score does not have a significant linear relationship. The boxplot suggests that family income does not contribute much in explaining the variation in satisfaction score. 
 
-From Table 1 and Summary 1 in the result section, we find that physical health also has a significant positive linear relationship (using estimates and p-value, and r-squared). Which explains, that physical and mental health are the two major factors that affect life satisfaction. However there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using p-values and estimates). Hence, the result suggests that both physical and mental health are significant predictors. Between the two variables, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
+From Table 1 and Summary 1 in the "Result" section, we find that physical health also has a significant positive linear relationship (using estimates and p-value, and r-squared). Which explains, that physical and mental health are the two major factors that affect life satisfaction. However there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using p-values and estimates). Hence, the result suggests that both physical and mental health are significant predictors. Between the two variables, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
 
 
 
