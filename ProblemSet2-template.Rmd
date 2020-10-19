@@ -322,7 +322,7 @@ From Table 1 and Summary 1 in the result section, we find that physical health a
 
 # Weaknesses
 
-Every statistic data study and analysis includes some biases and weaknesses. One of our weaknesses is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
+Every statistic data study and analysis includes some biases and weaknesses. One of our weakness is that the predictor variables are categorical variable, which made it challenging to visualize the linear regressions model we found and show the significance between the life satisfaction score and other factors. 
 In order to overcome these problems, we replaced the ranges given in the categorical predictor variables with their midpoints.  
 This allowed us to perform quantitative analysis on our data; however, we still need to take potential biases into account when interpreting the result, because the true values for the categorical predictor variables could be far away from their newly assigned midpoints.  
 
