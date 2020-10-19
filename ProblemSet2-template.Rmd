@@ -35,7 +35,7 @@ Therefore, as the ongoing COVID-19 crisis reminds us of the importance of well b
 
 Throughout this report, we are going to determine and analyze some potential factors that affect one's life satisfaction, as well as to identify the most significant factor among them.  
 To be more specific, in the following sections, we will use statistical methods to build a regression model of life satisfaction score by potential factors, and interpret the regression output to find relationships between the life satisfaction score and potential factors.  
-This process includes cleaning the given data into a simpler, but efficient version, linear regression modelling, graphical visualizations and interpretations of the outputs.
+This process includes cleaning the given data into a simpler, but efficient version, linear regression modeling, graphical visualizations and interpretations of the outputs.
 
 ## Data
 
@@ -351,7 +351,7 @@ Normality is one of the assumptions in the linear regression model. However, the
 
 # Next Steps
 
-For the next steps, we could do a follow up survey on the related topic (life satisfaction vs mental and physical health), and compare the data of the prior and post COVID-19. We could see how people's mental health changed due to COVID-19, the life satisfaction rate is expected to decrease in this case. Also, we could seek for interaction effects between few independent variables and do ANOVA tests to figure out if there is any independant variable that is dependent to another independant variable. (ie) how age and mental health rate could be interactive).
+For the next steps, we could do a follow up survey on the related topic (life satisfaction vs mental and physical health), and compare the data of the prior and post COVID-19. We could see how people's mental health changed due to COVID-19, the life satisfaction rate is expected to decrease in this case. Also, we could seek for interaction effects between few independent variables and do ANOVA tests to figure out if there is any independent variable that is dependent to another independent variable. (ie) how age and mental health rate could be interactive).
 
 Furthermore, since we have found in the previous section that the normality assumption was violated in our model, we could fit other models that satisfy all of the required assumptions on linear regression model, and find the best model among them.
 
