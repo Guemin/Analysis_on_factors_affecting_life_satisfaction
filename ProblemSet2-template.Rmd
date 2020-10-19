@@ -12,6 +12,7 @@ output:
 library(dplyr)
 library(tidyverse)
 library("gridExtra")
+library(knitr)
 data <- read_csv("gss.csv")
 ```
 
@@ -47,12 +48,12 @@ As a result, every survey conducted so far contain the responses related to the 
 One of the characteristics of our data set is that the majority of the variables are categorical. However, some drawbacks of using such data is that there is a limit to the kinds of statistical analysis that we can use with our data, as well as numerical operations or quantitative analysis cannot be performed on such data.  
 Not only this, but there are number of columns in our data set with too many NAs in them, and this indicates that many of observations in certain variables are not available or missing. If we want to use such variables in our analysis, we would first need to exclude those 'NA' observations from our data; however, any results drawn from the data could possibly be biased or misleading due to the small number of observations available. 
 
-Since the original data set contains too many variables that are not necessary, we are going to clean the data set prior to analysis by removing them.
+Since the original data set contains too many variables that are not necessary, we are going to clean the data set prior to analysis by removing them. Also, we are going to look for non-responses in our variables of interest and simply remove them from our data; removing the non-responses would not influence the overall performance of the regression model since we still have 13007 observations left in the new data.
 
 ```{r include = F, echo = F, warning = F, message = F}
 # life satisfaction data with some potential factors
 life_satisfaction_data <- data %>% 
-  select(caseid, age, sex, feelings_life, self_rated_health, self_rated_mental_health, 
+  select(caseid, feelings_life, self_rated_health, self_rated_mental_health, 
          income_family, average_hours_worked) %>% 
   # mutate categorical values in self_rated_health into numerical scores
   mutate(self_rated_health = case_when(self_rated_health == "Excellent" ~ 5, 
@@ -68,17 +69,20 @@ life_satisfaction_data <- data %>%
                                               self_rated_mental_health == "Fair" ~ 2, 
                                               self_rated_mental_health == "Poor" ~1, 
                                               self_rated_mental_health == "Don't know" ~ 0)) %>%
+  # remove not-responded observations from the data
   filter(self_rated_health != 0, self_rated_mental_health != 0, 
          average_hours_worked != "Don't know") %>%
+  # rename some varialbes
   rename(ID = caseid, satisfaction_score = feelings_life, family_income = income_family, work_hours = average_hours_worked)
 ```
 
-Here is our newly created data:
+These are the first six observations in our newly created data:
 ```{r echo = F, warning = F, message = F}
-head(life_satisfaction_data)
+# preview of what our newly created data looks like
+kable(head(life_satisfaction_data))
 ```
 
-Our data contains 8 variables: ID, age, sex, satisfaction_score, self_rated_health, self_rated_mental_health, family_income, and work_hours.  
+Our data contains 6 variables: ID, satisfaction_score, self_rated_health, self_rated_mental_health, family_income, and work_hours.  
 Detailed descriptions on variables are provided in the footnote^[* satisfaction_score indicates the life satisfaction score on a scale of 0(very dissatisfied) to 10(very satisfied).  
 \    \    \ * self_rated_health and self_rated_mental health are the physical and mental health ratings, respectively,  
 \    \    \ on a scale of 1(poor) to 5(Excellent) given by the respondent.  
@@ -151,7 +155,54 @@ Here is the summary of the multiple linear regression model:
 
 __Summary 1:__
 ```{r echo = F, warning = F, message = F}
-summary(satisfaction_lm)
+# summary output of the regression model
+result <- summary(satisfaction_lm)
+# create a vector of estimates
+estimates <- c(result$coefficients["(Intercept)","Estimate"], 
+               result$coefficients["as.factor(self_rated_health)2", "Estimate"],
+               result$coefficients["as.factor(self_rated_health)3", "Estimate"],
+               result$coefficients["as.factor(self_rated_health)4", "Estimate"],
+               result$coefficients["as.factor(self_rated_health)5", "Estimate"],
+               result$coefficients["as.factor(self_rated_mental_health)2", "Estimate"], 
+               result$coefficients["as.factor(self_rated_mental_health)3", "Estimate"], 
+               result$coefficients["as.factor(self_rated_mental_health)4", "Estimate"], 
+               result$coefficients["as.factor(self_rated_mental_health)5", "Estimate"],
+               result$coefficients["as.factor(family_income)37499.5", "Estimate"], 
+               result$coefficients["as.factor(family_income)62499.5", "Estimate"], 
+               result$coefficients["as.factor(family_income)87499.5", "Estimate"], 
+               result$coefficients["as.factor(family_income)112499.5", "Estimate"], 
+               result$coefficients["as.factor(family_income)125000", "Estimate"], 
+               result$coefficients["as.factor(work_hours)15", "Estimate"],
+               result$coefficients["as.factor(work_hours)35", "Estimate"],
+               result$coefficients["as.factor(work_hours)45.05", "Estimate"],
+               result$coefficients["as.factor(work_hours)50.1", "Estimate"])
+# create a vector of p-values
+p_values <- c(result$coefficients["(Intercept)","Pr(>|t|)"], 
+              result$coefficients["as.factor(self_rated_health)2","Pr(>|t|)"], 
+              result$coefficients["as.factor(self_rated_health)3","Pr(>|t|)"],
+              result$coefficients["as.factor(self_rated_health)4","Pr(>|t|)"],
+              result$coefficients["as.factor(self_rated_health)5","Pr(>|t|)"],
+              result$coefficients["as.factor(self_rated_mental_health)2","Pr(>|t|)"],
+              result$coefficients["as.factor(self_rated_mental_health)3","Pr(>|t|)"],
+              result$coefficients["as.factor(self_rated_mental_health)4","Pr(>|t|)"],
+              result$coefficients["as.factor(self_rated_mental_health)5","Pr(>|t|)"],
+              result$coefficients["as.factor(family_income)37499.5","Pr(>|t|)"],
+              result$coefficients["as.factor(family_income)62499.5","Pr(>|t|)"],
+              result$coefficients["as.factor(family_income)87499.5","Pr(>|t|)"],
+              result$coefficients["as.factor(family_income)112499.5","Pr(>|t|)"],
+              result$coefficients["as.factor(family_income)125000","Pr(>|t|)"],
+              result$coefficients["as.factor(work_hours)15","Pr(>|t|)"],
+              result$coefficients["as.factor(work_hours)35","Pr(>|t|)"],
+              result$coefficients["as.factor(work_hours)45.05","Pr(>|t|)"],
+              result$coefficients["as.factor(work_hours)50.1","Pr(>|t|)"])
+# create a table of estimates and corresponding p-values of the test with null hypothesis that the slope is 0
+kable(data.frame(coefficients = c("(Intercept)", "as.factor(self_rated_health)2", "as.factor(self_rated_health)3", 
+                   "as.factor(self_rated_health)4", "as.factor(self_rated_health)5", "as.factor(self_rated_mental_health)2", 
+                   "as.factor(self_rated_mental_health)3", "as.factor(self_rated_mental_health)4", 
+                   "as.factor(self_rated_mental_health)5", "as.factor(family_income)37499.5", 
+                   "as.factor(family_income)62499.5", "as.factor(family_income)87499.5", "as.factor(family_income)112499.5",
+                   "as.factor(family_income)125000", "as.factor(work_hours)15", "as.factor(work_hours)35",
+                   "as.factor(work_hours)45.05", "as.factor(work_hours)50.1"), estimates, p_values))
 ```
 
 With the estimates from the regression output, we know that our regression line has a following equation:  
@@ -200,7 +251,11 @@ This is the table with $R^2_{adjusted}$ values in each model, and the change in 
 
 __Table 1:__
 ```{r echo = F, warning = F, message = F}
-tibble(Predictors = c("self_rated_health", "self_rated_health + self_rated_mental_health", "self_rated_health + self_rated_mental_health + family_income"), R_squared_adjusted = c(first_R2, second_R2, third_R2), Change = c(first_R2, second_R2 - first_R2, third_R2 - second_R2))
+# create a table with adjusted r-squared and its changes as more predictors added to the model
+kable(data.frame(Predictors = c("self_rated_health", "self_rated_health + self_rated_mental_health", 
+                      "self_rated_health + self_rated_mental_health + family_income"), 
+       R_squared_adjusted = c(first_R2, second_R2, third_R2), 
+       Change = c(first_R2, second_R2 - first_R2, third_R2 - second_R2)))
 ```
 
 As it is shown in the table, there is a greatest increase in $R^2_{adjusted}$ when the second predictor, self_rated_mental_health is added to the model. This increase is quite close the $R^2_{adjusted}$ of our initial simple linear regression model with a predictor, self_rated_health.
