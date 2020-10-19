@@ -91,8 +91,9 @@ Detailed descriptions on variables are provided in the footnote^[* satisfaction_
 \    \    \ on a scale of 1(poor) to 5(Excellent) given by the respondent.  
 \    \    \ * work_hours indicates the average number of hours worked per week.].
 
-Since we want to observe how the life satisfaction score is related to potential factors such as health or financial conditions, the response variable of our analysis will be satisfaction_score and the predictors will be the potential factors: self_rated_health, self_rated_mental_health, family_income, and work_hours.
+Since we want to observe how the life satisfaction score is related to potential factors such as health or financial conditions, the response variable of our analysis will be satisfaction_score and the predictors will be the potential factors: self_rated_health, self_rated_mental_health, family_income, and work_hours.  
 
+(Note: the scatter plot of the raw data is eliminated since the explanatory variables are categorical variables which does not show a good visualization of the data)
 
 \newpage
 ## Model
