@@ -149,6 +149,8 @@ satisfaction_lm <- lm(satisfaction_score ~ as.factor(self_rated_health)
 After finding some relationships between our response and predictor variables using the regression model, we are going to identify which predictor is the most significant factor in explaining the variability in the response variable.
 In other words, we are going to find out which of the potential factors (among physical health condition, mental health condition, income and average work hours) can explain the variability in life satisfaction the most.
 
+Diagnostic issues in our model will be discussed in the "Weaknesses" section.
+
 \newpage
 ## Results
 
@@ -265,7 +267,7 @@ On the other hand, the change in $R^2_{adjusted}$ is relatively small when famil
 ## Discussion
 
 
-The goal of this process is to find some factors that affect one's satisfaction on life. Data cleaning of the 2017 General Social Survey(GSS), obtained from the CHASS website, is done in the "Data" part, but there may have some bias since many responses are not available. Therefore, We focused more on the variables with less NA responses to do the anlaysis as accurate as possible. Further discussions on the biases that our data may contain can be found in the "Weaknesses" section.
+The goal of this process is to find some factors that affect one's satisfaction on life. Data cleaning of the 2017 General Social Survey(GSS), obtained from the CHASS website, is done in the "Data" part, but there may be some biases since many responses are not available. Therefore, We focused more on the variables with less NA responses to do the anlaysis as accurate as possible. Further discussions on the biases that our data may contain can be found in the "Weaknesses" section.
 
 Here is some graphical visualization of positive correlation of the explanatory variables used in the regression models and life satisfaction score:
 
@@ -312,7 +314,7 @@ Figure 2 shown above is the boxplot of satisfaction_score and work_hours. Work_h
 
 Figure 3 is a boxplot of satisfaction_score and self_rated_health, and it shows a positive linear relationship between the two variables. The slope of the red line shows weaker change in 1 unit of health rate than what shows in figure 1, which is mentioned previously that self_rated_health is not as well related as self_rated_mental_health.
 
-Figure 4 shows a consistent median of satisfaction score over all income ranges, which shows family_income and satisfaction_score does not have a significant linear relationship. The boxplot suggests that family income does not contribute much in explaining the variation in satisfaction score. 
+Figure 4 shows a consistent median of satisfaction score over all income ranges, which shows family_income and satisfaction_score do not have a significant linear relationship. The boxplot suggests that family income does not contribute much in explaining the variation in satisfaction score. 
 
 From Table 1 and Summary 1 in the "Result" section, we find that physical health also has a significant positive linear relationship (using estimates and p-value, and r-squared). Which explains, that physical and mental health are the two major factors that affect life satisfaction. However there is no strong relationship shown between income, hours worked and life satisfaction(from summary 1 using p-values and estimates). Hence, the result suggests that both physical and mental health are significant predictors. Between the two variables, mental health is a more important factor than physical health in terms of explaining the variability of the life satisfaction score.
 
