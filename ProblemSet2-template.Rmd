@@ -379,8 +379,6 @@ R Draw Multiple ggplot2 Plots Side-by-Side (Example): Plot on One Page. (2020, S
 Xie, Y. (n.d.). Knitr v1.30. Retrieved October 19, 2020, from https://www.rdocumentation.org/packages/knitr/versions/1.30
 
 8. Wrapping column name in pdf table using package "kableExtra": 
-Feder, A. (2018, April 10). Wrap column name in pdf table, from knitr::kable. https://community.rstudio.com/t/wrap-column-name-in-pdf-table-from-knitr-kable/3278/4. (apa7)
-
 Feder, A. (2018, April 10). Wrap column name in pdf table, from knitr::kable. Retrieved October 19, 2020, from https://community.rstudio.com/t/wrap-column-name-in-pdf-table-from-knitr-kable/3278/4  (apa6 )
 
 
