@@ -94,11 +94,7 @@ Since we want to observe how the life satisfaction score is related to potential
 \newpage
 ## Model
 
-Introduce the selected model here. It is expected that you will use some mathematical notation here. If you do please ensure that all notation is explained. You may also want to discuss any special (hypothetical) cases of your model here, as well as any caveats.  
-
-**  
-
-Now, we are going to fit a multiple linear regression model in order to find linear associations between satisfaction_score and other predictor variables: self_rated_health, self_rated_mental_health, family_income, and work_hours.  
+Now, we are going to fit a multiple linear regression model in order to find linear associations between satisfaction_score and other predictor variables: self_rated_health, self_rated_mental_health, family_income, and work_hours, using R software.  
 
 Note, the equation for our regression line looks like this:  
 
