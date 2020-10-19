@@ -15,6 +15,7 @@ library("gridExtra")
 library(knitr)
 library("kableExtra")
 # the data set was obtained from the CHASS website
+# please download the submitted gss.csv in Quercus to the directory
 data <- read_csv("gss.csv")
 ```
 
