@@ -22,7 +22,7 @@ data <- read_csv("gss.csv")
 
 ## Abstract
 
-We use the 2017 General Social Survey(GSS) data obatained from the CHASS website to study the response of life satisfactions of people in Canada to multiple factors. The objective of the analysis is to find and analyze some potential factors that affect life satisfaction, and to observe the most significant factor among them. Linear model and adjusted $R^2$^[*adjusted $R^2$ is explained in "Model" section] are used to determine the significant factors, and plots are drawn to show the linear trend or to exaplain some weakness of the analysis. Through the analysis, We find a positive linear relationships between two independent variables self_rated_mental_health, self_rated_health and a dependent variable life_satisfaction rate, which means people who rate themselves as "mentally and/or physically healthy" are relatively more satisfied with their lives; on the other hand, there is no overall effects of hours worked on life satisfaction level. 
+We use the 2017 General Social Survey(GSS) data obatained from the CHASS website to study and analyze some potential factors affecting Canadians' life satisfactions, as well as to observe the most significant factor among them. Linear model and adjusted $R^2$^[*adjusted $R^2$ is explained in "Model" section] are used to determine the significant factors, and plots are drawn to show the linear trend or to exaplain some weakness of the analysis. Through the analysis, We find a positive linear relationships between two independent variables self_rated_mental_health, self_rated_health and a dependent variable life_satisfaction rate, which means people who rate themselves as "mentally and/or physically healthy" are relatively more satisfied with their lives; on the other hand, there is no overall effects of hours worked on life satisfaction level. 
 Together, these results suggest that no matter how much the income or working hours are, the most important factor that decides people's life satisfaction level is their mental health. 
 
 ## Introduction
@@ -352,23 +352,26 @@ Furthermore, since we have found in the previous section that the normality assu
 
 ## References
 
-1. GSS Data: 
+1. 2017 GSS Data: 
 General Social Survey, Cycle 31: 2017: Family. (n.d.). Retrieved October 16, 2020, from https://sda-artsci-utoronto-ca.myaccess.library.utoronto.ca/cgi-bin/sda/hsda?harcsda4+gss31
 
-2. Data Cleaning Code: 
+2. 2017 GSS Data Documentation:
+General Social Survey Cycle 31 : Families - Public Use Microdata File Documentation and User’s Guide. (2017). Retrieved October 17, 2020, from https://sda-artsci-utoronto-ca.myaccess.library.utoronto.ca/sdaweb/dli2/gss/gss31/gss31/more_doc/GSS31_User_Guide.pdf
+
+3. Data Cleaning Code: 
 Alexander, Rohan, and Sam Caetano.( 2019, Sept 16). "gss_cleaning.R”. Retrieved Oct 10. 2020, from
 https://www.tellingstorieswithdata.com/01-03-r_essentials.html
 
-3. Identifying the most significant predictor: 
+4. Identifying the most significant predictor: 
 Frost, J., Adusei, C., Peeyush, Siyabonga, Sreeja, Narayanan, J., . . . Sachin. (2019, June 13). Identifying the Most Important Independent Variables in Regression Models. Retrieved October 16, 2020, from https://statisticsbyjim.com/regression/identifying-important-independent-variables/
 
-4. QQ normal plot code:
+5. QQ normal plot code:
 Sheather, S. J. (2010). A Modern approach to regression with R. New York: Springer.
 
-5. Plotting multiple plots on one page:
+6. Plotting multiple plots on one page:
 R Draw Multiple ggplot2 Plots Side-by-Side (Example): Plot on One Page. (2020, September 30). Retrieved October 17, 2020, from https://statisticsglobe.com/draw-multiple-ggplot-plots-side-by-side
 
-6. Knitr package:
+7. Knitr package:
 Xie, Y. (n.d.). Knitr v1.30. Retrieved October 19, 2020, from https://www.rdocumentation.org/packages/knitr/versions/1.30
 
 
