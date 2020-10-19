@@ -13,6 +13,7 @@ library(dplyr)
 library(tidyverse)
 library("gridExtra")
 library(knitr)
+# the data set was obtained from the CHASS website
 data <- read_csv("gss.csv")
 ```
 
@@ -21,7 +22,7 @@ data <- read_csv("gss.csv")
 
 ## Abstract
 
-We use the 2017 General Social Survey(GSS) data to study the response of life satisfactions of people in Canada to multiple factors. The objective of the analysis is to find and analyze some potential factors that affect life satisfaction, and to observe the most significant factor among them. Linear model and adjusted $R^2$^[*adjusted $R^2$ is explained in "Model" section] are used to determine the significant factors, and plots are drawn to show the linear trend or to exaplain some weakness of the analysis. Through the analysis, We find a positive linear relationships between two independent variables self_rated_mental_health, self_rated_health and a dependent variable life_satisfaction rate, which means people who rate themselves as "mentally and/or physically healthy" are relatively more satisfied with their lives. On the other hand, there is no overall effects of hours worked on life satisfaction level. 
+We use the 2017 General Social Survey(GSS) data obatained from the CHASS website to study the response of life satisfactions of people in Canada to multiple factors. The objective of the analysis is to find and analyze some potential factors that affect life satisfaction, and to observe the most significant factor among them. Linear model and adjusted $R^2$^[*adjusted $R^2$ is explained in "Model" section] are used to determine the significant factors, and plots are drawn to show the linear trend or to exaplain some weakness of the analysis. Through the analysis, We find a positive linear relationships between two independent variables self_rated_mental_health, self_rated_health and a dependent variable life_satisfaction rate, which means people who rate themselves as "mentally and/or physically healthy" are relatively more satisfied with their lives; on the other hand, there is no overall effects of hours worked on life satisfaction level. 
 Together, these results suggest that no matter how much the income or working hours are, the most important factor that decides people's life satisfaction level is their mental health. 
 
 ## Introduction
